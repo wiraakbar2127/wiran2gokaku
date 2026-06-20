@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WiraN2yomuSRS</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23f7f7f4%22/%3E%3Cpath%20d%3D%22M51%2018c-5.2-7-17.6-8.2-26.6-3.9-7.7%203.7-11.7%2010.7-9.2%2016.7%201.9%204.5%207.1%207.3%2014.2%207.1l7.9-.3%204.9%207.8c.9%201.4%203.1.8%203.1-.9v-9.2c4.9-2.1%208.4-5.6%209.2-9.7.5-2.8-.7-5.1-3.5-7.6Z%22%20fill%3D%22%23111%22/%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2224%22%20r%3D%224.6%22%20fill%3D%22%23f7f7f4%22/%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2226%22%20r%3D%223.2%22%20fill%3D%22%23f7f7f4%22/%3E%3Cpath%20d%3D%22M17%2036c7%202.8%2018.1%202.1%2026-1.9%22%20fill%3D%22none%22%20stroke%3D%22%23f7f7f4%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M24%2042v8M31%2042v8M38%2041v8%22%20stroke%3D%22%23111%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M47%2017l7-5M50%2023l8-1M14%2025%207%2021%22%20stroke%3D%22%23111%22%20stroke-width%3D%223.1%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23f7f7f4%22/%3E%3Cpath%20d%3D%22M51%2018c-5.2-7-17.6-8.2-26.6-3.9-7.7%203.7-11.7%2010.7-9.2%2016.7%201.9%204.5%207.1%207.3%2014.2%207.1l7.9-.3%204.9%207.8c.9%201.4%203.1.8%203.1-.9v-9.2c4.9-2.1%208.4-5.6%209.2-9.7.5-2.8-.7-5.1-3.5-7.6Z%22%20fill%3D%22%23111%22/%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2224%22%20r%3D%224.6%22%20fill%3D%22%23f7f7f4%22/%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2226%22%20r%3D%223.2%22%20fill%3D%22%23f7f7f4%22/%3E%3Cpath%20d%3D%22M17%2036c7%202.8%2018.1%202.1%2026-1.9%22%20fill%3D%22none%22%20stroke%3D%22%23f7f7f4%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M24%2042v8M31%2042v8M38%2041v8%22%20stroke%3D%22%23111%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M47%2017l7-5M50%2023l8-1M14%2025%207%2021%22%20stroke%3D%22%23111%22%20stroke-width%3D%223.1%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#f6f6f4" />
+  <style>
+    :root{--bg:#f6f6f4;--paper:#fff;--ink:#111;--muted:#777;--soft:#e9e9e6;--line:#d8d8d4;--shadow:0 24px 70px rgba(0,0,0,.08);--radius:28px}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{-webkit-tap-highlight-color:transparent}
+    header{position:sticky;top:0;z-index:50;background:rgba(246,246,244,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1160px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900;letter-spacing:-.05em;font-size:20px}.brand small{display:block;font-weight:700;letter-spacing:0;color:var(--muted);font-size:11px;margin-top:1px}.tabs{display:flex;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px}.tab{border:0;background:transparent;color:#222;border-radius:999px;padding:10px 16px;cursor:pointer;font-weight:800}.tab.active{background:#111;color:#fff}
+    main{max-width:1160px;margin:auto;padding:24px 20px 56px}.page{display:none}.page.active{display:block}.card{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}.section{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:16px}.section h1,.section h2{margin:0;letter-spacing:-.055em;line-height:1}.section h1{font-size:clamp(34px,6vw,64px)}.section h2{font-size:30px}.muted{color:var(--muted);line-height:1.7}.btn{border:0;background:#111;color:#fff;border-radius:999px;padding:12px 16px;font-weight:850;cursor:pointer}.btn.secondary{background:#fff;color:#111;border:1px solid var(--line)}.btn.ghost{background:#f1f1ef;color:#111}.btn.small{font-size:13px;padding:9px 13px}.btn.danger{background:#b91c1c;color:#fff;border:1px solid #991b1b}.btn.danger:hover{background:#991b1b}label{display:block;font-weight:850;margin:0 0 8px}input,textarea{width:100%;border:1px solid var(--line);border-radius:18px;background:#fff;padding:13px 14px;outline:none;color:#111}textarea{min-height:155px;resize:vertical;line-height:1.6}.grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.field{margin-top:15px}.empty{border:1px dashed var(--line);border-radius:22px;padding:24px;text-align:center;color:var(--muted);background:#fff}.library{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:15px}.library .story{min-width:0}.story{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);background:#fff;border-radius:22px;padding:14px}.cover{width:68px;height:92px;border-radius:14px;background:#111;object-fit:cover;flex:0 0 auto}.story h3{margin:0 0 6px;letter-spacing:-.035em}.meta{font-size:12px;color:var(--muted);font-weight:750}.progress{height:7px;background:#eee;border-radius:99px;overflow:hidden;margin:12px 0}.bar{height:100%;background:#111;width:0}.reader-wrap{position:relative}.floating-save{position:fixed;right:clamp(16px,4vw,42px);bottom:24px;z-index:60;width:58px;height:58px;display:grid;place-items:center;border:0;border-radius:999px;background:#7c3aed;color:#fff;font-size:25px;box-shadow:0 14px 40px rgba(124,58,237,.38);cursor:pointer;transition:background .18s ease,transform .18s ease,box-shadow .18s ease}.floating-save:hover{transform:translateY(-2px)}.floating-save.saved{background:#16a34a;box-shadow:0 14px 40px rgba(22,163,74,.38)}.reader-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.book{position:relative;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:32px;min-height:680px;padding:40px clamp(22px,5vw,70px);overflow:hidden;transition:transform .2s ease,opacity .2s ease}.book.turn-next{animation:turnNext .25s ease}.book.turn-prev{animation:turnPrev .25s ease}@keyframes turnNext{0%{transform:translateX(10px);opacity:.6}100%{transform:none;opacity:1}}@keyframes turnPrev{0%{transform:translateX(-10px);opacity:.6}100%{transform:none;opacity:1}}.book-title{margin:0 0 6px;font-size:clamp(26px,4vw,42px);letter-spacing:-.06em}.page-info{color:var(--muted);font-weight:800}.sentence{padding:13px 0;border-bottom:0}.sentence:last-child{border-bottom:0}.jp{font-size:clamp(20px,2.65vw,29px);line-height:1.95;letter-spacing:.01em}.id{font-size:clamp(15px,1.9vw,18px);line-height:1.75;color:#4a4a47;margin-top:2px}.ruby rt{font-size:.52em;color:#444;filter:none;transition:.15s}.show-ruby .ruby rt,.ruby:hover rt{filter:none}.tap-zone{display:none;position:absolute;top:0;bottom:0;width:38%;z-index:5;cursor:pointer}.tap-left{left:0}.tap-right{right:0}.nav-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px}.keyboard-hint{text-align:center;color:var(--muted);font-size:13px;margin-top:10px}.img-strip{display:flex;gap:12px;overflow-x:auto;margin:16px 0 20px;padding-bottom:4px}.story-img{height:150px;max-width:260px;border-radius:18px;border:1px solid var(--line);object-fit:cover}.story-image-block{margin:18px 0 22px}.story-image-block img,.story-image-block video{display:block;width:min(100%,820px);max-height:560px;margin:auto;border-radius:20px;border:1px solid var(--line);object-fit:contain;background:#f4f4f2}.story-image-block video{height:auto}.story-media-link{display:block;text-align:center;margin-top:8px;color:#111;font-weight:850}.story-link-card{display:block;width:min(100%,820px);margin:auto;padding:16px 18px;border:1px solid var(--line);border-radius:20px;background:#f7f4ff;color:#4c1d95;text-decoration:none;font-weight:900;text-align:center}.story-link-card:hover{text-decoration:underline}.story-embed{position:relative;width:min(100%,820px);aspect-ratio:16/9;margin:auto;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#111}.story-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.story-image-caption{font-size:13px;line-height:1.6;color:var(--muted);text-align:center;margin-top:8px;font-weight:700}.srs-card{text-align:center;padding:44px 24px}.quiz-word{font-size:clamp(46px,9vw,78px);font-weight:900;letter-spacing:-.06em}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}.choice{border:1px solid var(--line);background:#fff;border-radius:18px;padding:15px;cursor:pointer;font-weight:800}.choice:hover{border-color:#111}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;transition:.2s;background:#111;color:#fff;border-radius:999px;padding:12px 16px;font-weight:800;z-index:100}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* v6 reader + SRS polish */
+    .reader-top{justify-content:center;text-align:center;margin-bottom:18px}
+    .reader-top>div{width:100%}
+    .book-title{font-weight:950;text-align:center;margin:0 auto 4px;max-width:900px;line-height:1.15}
+    .page-info{display:none}
+    .reader-page-bottom{text-align:center;color:var(--muted);font-weight:900;font-size:14px;margin-top:14px;letter-spacing:.02em}
+    .floating-save{background:#111;color:#fff;width:56px;height:56px;font-size:0;box-shadow:0 16px 42px rgba(0,0,0,.18)}
+    .floating-save:hover{background:#2b2b28;transform:translateY(-2px)}
+    .floating-save.saved{background:#22c55e;box-shadow:0 16px 42px rgba(34,197,94,.32)}
+    .floating-save svg{width:24px;height:24px;display:block;stroke:currentColor;fill:none;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round}
+    .ruby rt{filter:none;color:#555}
+    .srs-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 16px}
+    .srs-stat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(0,0,0,.05);cursor:pointer;transition:transform .16s ease,border-color .16s ease}.srs-stat:hover{transform:translateY(-2px);border-color:#111}.srs-stat.active{outline:3px solid rgba(17,17,17,.12);border-color:#111}
+    .srs-stat strong{display:block;font-size:clamp(24px,4vw,38px);letter-spacing:-.05em;line-height:1}
+    .srs-stat span{display:block;margin-top:7px;color:var(--muted);font-weight:850;font-size:13px}
+    .srs-stat.ready{background:#111;color:#fff;border-color:#111}
+    .srs-stat.ready span{color:rgba(255,255,255,.72)}
+    .srs-card{padding:32px clamp(18px,4vw,44px);transition:background .2s ease,border-color .2s ease}
+    .srs-card.correct{background:#ecfdf3;border-color:#86efac}
+    .srs-card.wrong{background:#fff7ed;border-color:#fed7aa}
+    .srs-input-wrap{max-width:560px;margin:22px auto 0;display:flex;gap:10px}
+    .srs-input{font-size:18px;font-weight:800;text-align:center;border-radius:999px;padding:15px 18px}
+    .srs-submit{white-space:nowrap}
+    .srs-answer{margin-top:18px;font-size:18px;font-weight:900;color:#14532d}
+    .srs-answer.wrong-answer{color:#9a3412}
+    .srs-level{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 12px;border-radius:999px;background:#f1f1ef;color:#333;font-weight:900;font-size:13px}
+
+
+    /* v7 fossil theme + reader finishing + SRS reading mode */
+    :root{--fossil:#e8dfcf;--bone:#f9f4e9;--earth:#4a3b2a;--amber:#b7791f;--moss:#355e3b;--sage:#6b8f71}
+    body{background-color:#f3efe6;background-image:
+      radial-gradient(circle at 12% 18%, rgba(183,121,31,.12) 0 2px, transparent 3px),
+      radial-gradient(circle at 80% 22%, rgba(53,94,59,.10) 0 2px, transparent 3px),
+      linear-gradient(135deg, rgba(255,255,255,.56), rgba(232,223,207,.74));
+      background-attachment:fixed}
+    body:before{content:'𓃰  🦴   𓅓  🦴   𓃠';position:fixed;inset:auto 0 10px 0;z-index:-1;font-size:84px;letter-spacing:34px;opacity:.045;white-space:nowrap;transform:rotate(-4deg);pointer-events:none}
+    header{background:rgba(243,239,230,.88)}
+    .brand{color:var(--earth)}
+    .brand small{color:#7c6f5e}
+    .tabs{background:rgba(255,255,255,.72)}
+    .tab{display:inline-flex;align-items:center;gap:7px;color:#3a332b}
+    .tab .nav-icon{font-size:15px;line-height:1}
+    .tab.active{background:var(--earth);color:#fff}
+    .book{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(252,249,243,.96));border-color:#d7c9b4}
+    .book:before{content:'🦴 🦕 🦴 🦖 🦴';position:absolute;right:-24px;top:18px;font-size:54px;opacity:.045;letter-spacing:18px;transform:rotate(11deg);pointer-events:none}
+    .book-title{color:#2e261d;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+    .reader-meta{margin-top:10px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;color:#6b5b47;font-weight:900;font-size:13px}
+    .reader-meta span{background:rgba(255,255,255,.72);border:1px solid #ded1bf;border-radius:999px;padding:7px 11px}
+    .floating-save{background:#5b4630;color:#fff;box-shadow:0 16px 42px rgba(91,70,48,.28)}
+    .floating-save:hover{background:#6f5539}
+    .floating-save.saved{background:#2f7d46;box-shadow:0 16px 42px rgba(47,125,70,.32)}
+    .floating-save svg{width:25px;height:25px;stroke-width:2}
+    .ruby rt{filter:none!important;opacity:1!important;color:#5d5145!important;text-shadow:none!important}
+    .show-ruby .ruby rt,.ruby:hover rt{filter:none!important}
+    .btn.finish{background:#2f7d46;color:#fff;border-color:#2f7d46;box-shadow:0 12px 28px rgba(47,125,70,.22)}
+    .finish-modal{position:fixed;inset:0;z-index:120;display:none;place-items:center;background:rgba(27,22,18,.38);backdrop-filter:blur(10px);padding:22px}
+    .finish-modal.show{display:grid}
+    .finish-card{width:min(92vw,460px);background:#fffaf1;border:1px solid #d8c7ad;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.22);padding:30px;text-align:center;color:#2f261e}
+    .finish-card .fossil-badge{font-size:54px;margin-bottom:8px}.finish-card h2{margin:0;font-size:30px;letter-spacing:-.04em}.finish-card p{color:#6b5b47;line-height:1.7;font-weight:700}
+    .loading-fossil{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:linear-gradient(180deg,#f6efe2,#e7dcc9);transition:opacity .35s ease,visibility .35s ease}
+    .loading-fossil.hide{opacity:0;visibility:hidden;pointer-events:none}
+    .loading-card{text-align:center;color:#4a3b2a;font-weight:950}.trex-walk{width:min(74vw,360px);height:170px;margin:auto;position:relative;overflow:visible}.trex{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:110px;filter:grayscale(1) sepia(.25);animation:trexBob .55s ease-in-out infinite alternate}.trex:after{content:'🦴';position:absolute;font-size:30px;left:28px;bottom:-10px;animation:boneStep .55s ease-in-out infinite alternate}.dust{position:absolute;left:14%;right:14%;bottom:18px;height:3px;border-radius:99px;background:rgba(74,59,42,.18);animation:dustMove 1s linear infinite}
+    @keyframes trexBob{from{transform:translate(-50%,-48%) rotate(-2deg)}to{transform:translate(-50%,-54%) rotate(2deg)}}@keyframes boneStep{from{transform:translateX(-8px) rotate(-14deg)}to{transform:translateX(10px) rotate(14deg)}}@keyframes dustMove{from{opacity:.35;transform:scaleX(.86)}to{opacity:.12;transform:scaleX(1.05)}}
+
+    .srs-browser{margin:16px 0 22px;text-align:left;border:1px solid var(--line);background:#fff;border-radius:22px;padding:16px}
+    .srs-browser-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+    .srs-browser-head strong{font-size:17px;letter-spacing:-.02em}
+    .srs-browser-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;max-height:330px;overflow:auto;padding-right:2px}
+    .srs-mini-card{border:1px solid var(--line);border-radius:18px;background:#fafafa;padding:12px}
+    .srs-mini-ruby{font-size:22px;font-weight:950;line-height:1.35}.srs-mini-ruby rt{font-size:.52em;color:#555;font-weight:800}
+    .srs-mini-meaning{margin-top:8px;font-size:13px;font-weight:850;color:#444}.srs-mini-time{margin-top:6px;font-size:12px;color:var(--muted);font-weight:800}.srs-mini-level{margin-top:8px;display:inline-flex;border-radius:999px;background:#eee;padding:5px 8px;font-size:11px;font-weight:900;color:#333}
+    .srs-question-ruby{display:inline-block;font-size:clamp(46px,9vw,78px);font-weight:950;line-height:1.25;letter-spacing:-.06em}.srs-question-ruby rt{font-size:.28em;color:#555;font-weight:850;letter-spacing:0}.srs-answer-meaning{margin-top:10px;color:#444;font-size:16px;font-weight:850}
+    .srs-card.correct{background:#e9f9ee;border-color:#6ee7a2}.srs-card.wrong{background:#fff6e9;border-color:#f3c27b}.srs-input{ime-mode:active}.srs-reading{font-size:15px;color:#6b5b47;font-weight:900;margin-top:8px}.srs-meaning{margin-top:10px;color:#4a4a47;font-size:16px;font-weight:850}.srs-answer small{display:block;margin-top:6px;color:inherit;opacity:.78;font-size:14px}.srs-meaning-under{margin-top:8px;color:#4a4a47;font-size:16px;font-weight:850}.srs-answer{margin-top:16px;font-size:24px;font-weight:950;color:#14532d}.srs-answer.wrong-answer{color:#9a3412}
+
+
+
+    /* v8 black-white minimalist fossil skin */
+    :root{--fossil:#f3f3f1;--bone:#ffffff;--earth:#111;--amber:#111;--moss:#111;--sage:#666}
+    body{background-color:#f6f6f4;background-image:
+      radial-gradient(circle at 10% 14%, rgba(0,0,0,.04) 0 1px, transparent 2px),
+      radial-gradient(circle at 78% 20%, rgba(0,0,0,.035) 0 1px, transparent 2px),
+      linear-gradient(180deg,#f8f8f6,#eeeeeb)!important;color:#111}
+    body:before{content:'☠  ◌  ⟐  ◌  ☠  ◌  ⟐';font-size:76px;letter-spacing:42px;color:#111;opacity:.035;transform:rotate(-6deg);bottom:12px}
+    header{background:rgba(246,246,244,.9)!important;border-bottom:1px solid #d9d9d5}
+    .brand,.book-title{color:#111!important;text-shadow:none!important}.brand small,.reader-meta{color:#666!important}
+    .tabs{background:#fff!important;border-color:#d8d8d4!important}.tab{color:#111!important}.tab.active{background:#111!important;color:#fff!important}.tab .nav-icon{font-size:14px;color:currentColor;filter:none}
+    .book{background:rgba(255,255,255,.93)!important;border-color:#d8d8d4!important}.book:before{content:'☠  ◌  ⟐  ◌  ☠';font-size:50px;color:#111;opacity:.035;right:-16px;top:20px}
+    .reader-meta span{background:#fff!important;border-color:#dededb!important;color:#333!important}
+    .floating-save{background:#111!important;color:#fff!important;box-shadow:0 16px 42px rgba(0,0,0,.18)!important}.floating-save:hover{background:#333!important}.floating-save.saved{background:#2f7d46!important;box-shadow:0 16px 42px rgba(47,125,70,.28)!important}
+    .finish-card{background:#fff!important;border-color:#ddd!important;color:#111!important}.finish-card .fossil-badge{font-size:42px}.finish-card .party-popper{filter:grayscale(.25)}.finish-card p{color:#111!important;font-size:18px;font-weight:900;margin:10px 0 0}.finish-modal{background:rgba(0,0,0,.34)!important}
+    .loading-fossil{background:#f6f6f4!important}.loading-card{color:#111!important;font-size:18px;letter-spacing:.02em}.trex-walk,.trex,.skull-track,.fossil-skull{display:none!important}
+    .skull-track{width:min(76vw,380px);height:150px;position:relative;margin:auto;overflow:hidden}.skull-track:after{content:'';position:absolute;left:14%;right:14%;bottom:26px;height:2px;background:#d8d8d4;border-radius:99px}
+    .fossil-skull{position:absolute;top:42px;right:-72px;width:92px;height:58px;border:4px solid #111;border-radius:55% 34% 32% 44%;background:#fff;animation:skullWalk 1.55s ease-in-out infinite;transform:scaleX(-1)}
+    .fossil-skull:before{content:'';position:absolute;left:-24px;top:24px;width:34px;height:20px;border:4px solid #111;border-right:0;border-radius:18px 0 0 18px;background:#fff}
+    .fossil-skull:after{content:'';position:absolute;right:15px;top:9px;width:18px;height:18px;border:4px solid #111;border-radius:50%;background:#f6f6f4}
+    .skull-eye{position:absolute;right:40px;top:14px;width:12px;height:12px;border-radius:50%;background:#111}.skull-jaw{position:absolute;left:-14px;top:42px;width:58px;height:16px;border:4px solid #111;border-top:0;border-radius:0 0 24px 24px;background:#fff;animation:jawStep .42s ease-in-out infinite alternate}.skull-teeth{position:absolute;left:6px;top:42px;width:28px;height:12px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 7px)}
+    @keyframes skullWalk{0%{right:-82px;transform:scaleX(-1) translateY(0) rotate(-2deg)}50%{transform:scaleX(-1) translateY(-8px) rotate(2deg)}100%{right:calc(100% + 82px);transform:scaleX(-1) translateY(0) rotate(-2deg)}}
+    @keyframes jawStep{from{transform:rotate(0deg)}to{transform:rotate(-4deg)}}
+
+
+    .edit-modal{position:fixed;inset:0;z-index:130;display:none;place-items:center;background:rgba(0,0,0,.34);backdrop-filter:blur(10px);padding:22px}
+    .edit-modal.show{display:grid}
+    .edit-card{width:min(100%,520px);background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:0 24px 80px rgba(0,0,0,.18);padding:24px}
+    .edit-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+    .edit-head h2{margin:0;font-size:28px;letter-spacing:-.04em}
+    .edit-close{width:38px;height:38px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#111;font-size:24px;font-weight:800;cursor:pointer;line-height:1}
+    .edit-actions{justify-content:flex-end}
+    .btn.edit{background:#fff;color:#111;border:1px solid var(--line)}
+    .btn.edit:hover{border-color:#111;background:#f7f7f5}
+
+
+
+    /* v16 SRS popup + safer romaji keyboard */
+    .srs-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 16px}
+    .srs-tools{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 0 18px}
+    .srs-popup-modal{position:fixed;inset:0;z-index:140;display:none;place-items:center;background:rgba(0,0,0,.34);backdrop-filter:blur(10px);padding:20px}
+    .srs-popup-modal.show{display:grid}
+    .srs-popup-card{width:min(100%,900px);max-height:88vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:30px;box-shadow:0 28px 90px rgba(0,0,0,.22);padding:22px;color:#111}
+    .srs-popup-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .srs-popup-head h2{margin:0;font-size:28px;letter-spacing:-.04em}
+    .srs-popup-close{width:40px;height:40px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#111;font-size:24px;font-weight:900;cursor:pointer;line-height:1}
+    .srs-popup-card .srs-browser{margin:12px 0 0!important;box-shadow:none}
+    .srs-popup-card .srs-browser-list{max-height:360px!important}
+    @media(max-width:850px){.srs-popup-card{border-radius:24px;padding:18px}.srs-popup-card .srs-stats{grid-template-columns:repeat(2,1fr)}}
+
+    @media(max-width:850px){.srs-stats{grid-template-columns:repeat(2,1fr)}.srs-input-wrap{flex-direction:column}.floating-save{right:16px;bottom:18px;width:54px;height:54px;font-size:23px}.nav{align-items:flex-start;flex-direction:column}.tabs{width:100%;overflow:auto}.grid{grid-template-columns:1fr}.section{align-items:flex-start;flex-direction:column}.book{min-height:calc(100vh - 210px);padding:26px 20px}.sentence{padding:12px 0}.choices{grid-template-columns:1fr}.tap-zone{width:50%}.nav-row .btn{padding:11px 14px}.reader-top{align-items:flex-start;flex-direction:column}}
+    /* v15 SRS answer layout fixes */
+    .srs-card{padding-top:30px}
+    .srs-card.has-browser{padding-top:22px}
+    .srs-browser{margin:8px 0 14px!important;padding:14px!important}
+    .srs-browser-list{max-height:260px!important}
+    .quiz-word.answer-shown{margin-top:18px;color:#111!important}
+    .quiz-word.answer-shown ruby{ruby-position:over}
+    .quiz-word.answer-shown rt{font-size:.32em;color:#555;font-weight:850;letter-spacing:0}
+    .srs-card.correct .quiz-word,.srs-card.wrong .quiz-word{color:#111!important}
+    .srs-answer-meaning{margin:8px 0 14px;color:#444;font-size:17px;font-weight:850}
+    .srs-answer,.srs-reading,.srs-meaning-under{display:none!important}
+
+
+    /* v18 furigana blur untuk reader: klik kanji/kata untuk membuka furigana */
+    .book .jp ruby.furigana-blur{
+      cursor:pointer;
+      border-radius:8px;
+      padding:0 1px;
+      transition:background .18s ease;
+    }
+    .book .jp ruby.furigana-blur:hover{background:rgba(0,0,0,.045)}
+    .book .jp ruby.furigana-blur rt{
+      filter:blur(5px)!important;
+      opacity:.82!important;
+      color:#555!important;
+      text-shadow:0 0 6px rgba(0,0,0,.32)!important;
+      user-select:none;
+      -webkit-user-select:none;
+      transition:filter .18s ease,opacity .18s ease,text-shadow .18s ease;
+    }
+    .book .jp ruby.furigana-blur.revealed rt{
+      filter:none!important;
+      opacity:1!important;
+      text-shadow:none!important;
+      user-select:text;
+      -webkit-user-select:text;
+    }
+
+
+    /* v21 favicon + mobile navbar icon-only + smoother responsive layout */
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+    body{overflow-x:hidden}
+    img,video,iframe{max-width:100%}
+    .tab{min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:7px;line-height:1;transition:background .18s ease,color .18s ease,transform .18s ease}
+    .tab:active{transform:scale(.96)}
+    .nav-icon{width:18px;height:18px;display:inline-grid;place-items:center;font-size:16px;font-weight:950;line-height:1}
+    .tab-label{display:inline-block}
+
+    @media(max-width:700px){
+      header{position:sticky;top:0}
+      .nav{padding:10px 12px;gap:10px;align-items:center;flex-direction:row!important}
+      .brand{font-size:16px;letter-spacing:-.04em;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .brand small{display:none}
+      .tabs{margin-left:auto;width:auto!important;max-width:56vw;overflow:visible!important;gap:5px;padding:4px;border-radius:999px;flex:0 0 auto}
+      .tab{width:42px;height:42px;min-height:42px;padding:0!important;border-radius:999px}
+      .tab-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+      .nav-icon{font-size:17px;width:20px;height:20px}
+      main{padding:16px 12px 44px}
+      .card{border-radius:22px;padding:18px;box-shadow:0 16px 44px rgba(0,0,0,.07)}
+      .section{gap:10px;margin-bottom:12px}
+      .section h1{font-size:clamp(30px,10vw,44px)}
+      .section h2{font-size:24px}
+      .muted{font-size:14px;line-height:1.65}
+      .library{grid-template-columns:1fr;gap:12px}
+      .story{border-radius:18px;padding:12px;gap:12px}
+      .cover{width:56px;height:76px;border-radius:12px}
+      .story h3{font-size:16px;line-height:1.25}
+      .meta{font-size:11px;line-height:1.45}
+      .actions{gap:8px}
+      .btn.small{font-size:12px;padding:8px 11px}
+      .reader-top{margin-bottom:12px}
+      .book-title{font-size:clamp(24px,8vw,34px);line-height:1.18}
+      .reader-meta{gap:6px;font-size:11px}
+      .reader-meta span{padding:6px 9px}
+      .book{border-radius:24px;min-height:calc(100svh - 230px);padding:22px 16px;box-shadow:0 18px 50px rgba(0,0,0,.08)}
+      .jp{font-size:clamp(19px,5.8vw,24px);line-height:2.02;word-break:break-word}
+      .id{font-size:14px;line-height:1.7}
+      .story-image-block{margin:14px 0 18px}
+      .story-image-block img,.story-image-block video,.story-link-card,.story-embed{border-radius:16px}
+      .nav-row{position:sticky;bottom:10px;z-index:40;background:rgba(246,246,244,.78);backdrop-filter:blur(12px);border:1px solid rgba(216,216,212,.78);border-radius:999px;padding:7px;box-shadow:0 12px 34px rgba(0,0,0,.08)}
+      .nav-row .btn{flex:1;min-width:0;padding:11px 10px;font-size:13px}
+      .floating-save{right:14px!important;bottom:72px!important;width:50px!important;height:50px!important}
+      .srs-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .srs-stat{padding:13px;border-radius:18px}
+      .srs-card{padding:20px 14px;border-radius:22px}
+      .srs-input-wrap{gap:8px}
+      .srs-input{font-size:16px;padding:14px 16px}
+      .choices{grid-template-columns:1fr}
+      .edit-modal,.srs-popup-modal{padding:12px}
+      .edit-card,.srs-popup-card{width:100%;max-height:88svh;overflow:auto;border-radius:22px;padding:18px}
+      .edit-head h2,.srs-popup-head h2{font-size:24px}
+      input,textarea{font-size:16px;border-radius:16px}
+      .toast{width:calc(100% - 24px);text-align:center;border-radius:18px;bottom:14px}
+    }
+
+    @media(max-width:380px){
+      .brand{font-size:14px;max-width:42vw}
+      .tabs{max-width:54vw;gap:4px}
+      .tab{width:38px;height:38px;min-height:38px}
+      main{padding-left:10px;padding-right:10px}
+      .book{padding:20px 14px}
+      .jp{font-size:19px}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="loading-fossil" id="appLoader" aria-label="Loading">
+    <div class="loading-card">Loading...</div>
+  </div>
+  <div class="finish-modal" id="finishModal">
+    <div class="finish-card">
+      <div class="fossil-badge party-popper">🎉</div>
+      <p>Selamat! Anda sudah menyelesaikan cerita ini!</p>
+    </div>
+  </div>
+  <div class="edit-modal" id="editStoryModal" aria-hidden="true">
+    <div class="edit-card">
+      <div class="edit-head">
+        <h2>Edit cerita</h2>
+        <button type="button" class="edit-close" id="closeEditStory" aria-label="Tutup">×</button>
+      </div>
+      <input type="hidden" id="editStoryId">
+      <div class="field"><label>Judul</label><input id="editStoryTitle" type="text" placeholder="Judul cerita"></div>
+      <div class="field"><label>Level</label><input id="editStoryLevel" type="text" placeholder="N2"></div>
+      <div class="field"><label>Tema</label><input id="editStoryTheme" type="text" placeholder="Misal: Misteri, Komedi, Romantis"></div>
+      <div class="field"><label>Penulis</label><input id="editStoryAuthor" type="text" placeholder="Nama penulis"></div>
+      <div class="actions edit-actions">
+        <button type="button" class="btn secondary" id="cancelEditStory">Batal</button>
+        <button type="button" class="btn" id="saveEditStory">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="srs-popup-modal" id="srsPopupModal" aria-hidden="true">
+    <div class="srs-popup-card">
+      <div class="srs-popup-head">
+        <h2>Detail Progress SRS</h2>
+        <button type="button" class="srs-popup-close" id="closeSrsPopup" aria-label="Tutup">×</button>
+      </div>
+      <div id="srsPopupContent"></div>
+    </div>
+  </div>
+  <header>
+    <nav class="nav">
+      <div class="brand">WiraN2yomuSRS<small>Japanese Reader + SRS</small></div>
+      <div class="tabs" aria-label="Navigasi utama">
+        <button class="tab active" data-page="library" aria-label="Library" title="Library"><span class="nav-icon" aria-hidden="true">▦</span><span class="tab-label">Library</span></button>
+        <button class="tab" data-page="import" aria-label="Import" title="Import"><span class="nav-icon" aria-hidden="true">＋</span><span class="tab-label">Import</span></button>
+        <button class="tab" data-page="srs" aria-label="SRS" title="SRS"><span class="nav-icon" aria-hidden="true">◇</span><span class="tab-label">SRS</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="library" class="page active">
+      <div class="section">
+        <div><h1>Library</h1><p class="muted">Kumpulan cerita yang sudah kamu import. Pilih cerita untuk lanjut membaca dari halaman terakhir yang tersimpan.</p></div>
+      </div>
+      <div class="card">
+        <div class="section" style="margin-bottom:14px"><h2>Daftar cerita</h2><span id="storyCount" class="meta"></span></div>
+        <div id="libraryList" class="library"></div>
+      </div>
+    </section>
+
+    <section id="import" class="page">
+      <div class="section">
+        <div><h1>Import</h1><p class="muted">Upload file JSON cerita dari GPT. Setelah berhasil, cerita otomatis masuk ke Library.</p></div>
+      </div>
+      <div class="card">
+        <h2 style="margin:0;letter-spacing:-.04em">Import cerita</h2>
+        <p class="muted">Pilih file JSON cerita. Paste JSON sudah dihapus supaya halaman import lebih rapi.</p>
+        <div class="field"><label>Upload JSON</label><input id="jsonFile" type="file" accept="application/json,.json" /></div>
+        <div class="actions"><button class="btn" id="importJson">Import ke Library</button></div>
+      </div>
+    </section>
+
+    <section id="reader" class="page">
+      <div class="reader-top">
+        <div><h1 class="book-title" id="readerTitle">Reader</h1><div class="reader-meta" id="readerMeta"><span>Pengarang: -</span><span>Tema: -</span></div><div class="page-info" id="pageInfo">0/0</div></div>
+      </div>
+      <div class="reader-wrap">
+        <div class="tap-zone tap-left" id="tapLeft" title="Sebelumnya"></div>
+        <div class="tap-zone tap-right" id="tapRight" title="Selanjutnya"></div>
+        <article class="book" id="book"></article>
+        <button class="floating-save" id="floatingSaveProgress" title="Simpan halaman" aria-label="Simpan halaman">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a1 1 0 0 1 1 1v15l-6-3-6 3V5a1 1 0 0 1 1-1z"/><path d="M10 8h4"/></svg>
+        </button>
+      </div>
+      <div class="nav-row"><button class="btn secondary" id="prevPage">← Sebelumnya</button><button class="btn" id="nextPage">Selanjutnya →</button></div>
+      <div class="reader-page-bottom" id="pageInfoBottom">0/0</div>
+      <div class="keyboard-hint">Keyboard: tekan ← atau →. HP: gunakan tombol Sebelumnya / Selanjutnya.</div>
+    </section>
+
+    <section id="srs" class="page">
+      <div class="section"><div><h1>SRS</h1><p class="muted">Latihan kosakata dari cerita yang sudah diimport.</p></div><span id="srsCount" class="meta"></span></div>
+      <div class="card srs-card" id="quizArea"></div>
+    </section>
+  </main>
+  <div class="toast" id="toast"></div>
+<script>
+const PARTICLES=new Set(['は','が','を','に','で','と','も','へ','の','から','まで','より','や','ね','よ','か','な','ので','けど','が、','を、','に、','で、']);
+const DEFAULT_PAGE_SIZE=20;
+const sampleStory={id:'sample_black_white_reader',title:'雨の日の約束',sourceUrl:'demo',level:'N2',coverImage:'',images:[],sentences:[
+{jp:'昨日の夕方、私は駅の前で昔の友達に会いました。',naturalId:'Kemarin sore, saya bertemu teman lama di depan stasiun.',furigana:[{text:'昨日',reading:'きのう'},{text:'夕方',reading:'ゆうがた'},{text:'私',reading:'わたし'},{text:'駅',reading:'えき'},{text:'前',reading:'まえ'},{text:'昔',reading:'むかし'},{text:'友達',reading:'ともだち'},{text:'会いました',reading:'あいました'}],tokens:[{jp:'昨日',id:'kemarin'},{jp:'夕方',id:'sore'},{jp:'私',id:'saya'},{jp:'駅',id:'stasiun'},{jp:'前',id:'depan'},{jp:'昔の友達',id:'teman lama'},{jp:'会いました',id:'bertemu'}]},
+{jp:'雨が強く降っていたので、二人で小さな喫茶店に入りました。',naturalId:'Karena hujan turun deras, kami berdua masuk ke sebuah kafe kecil.',furigana:[{text:'雨',reading:'あめ'},{text:'強く',reading:'つよく'},{text:'降って',reading:'ふって'},{text:'二人',reading:'ふたり'},{text:'小さな',reading:'ちいさな'},{text:'喫茶店',reading:'きっさてん'},{text:'入りました',reading:'はいりました'}],tokens:[{jp:'雨',id:'hujan'},{jp:'強く',id:'deras'},{jp:'降っていた',id:'turun'},{jp:'二人',id:'kami berdua'},{jp:'小さな',id:'kecil'},{jp:'喫茶店',id:'kafe'},{jp:'入りました',id:'masuk'}]},
+{jp:'彼女は昔から大切にしていた手紙を見せてくれました。',naturalId:'Dia memperlihatkan surat yang sudah lama ia simpan dengan penuh perhatian.',furigana:[{text:'彼女',reading:'かのじょ'},{text:'昔',reading:'むかし'},{text:'大切',reading:'たいせつ'},{text:'手紙',reading:'てがみ'},{text:'見せて',reading:'みせて'}],tokens:[{jp:'彼女',id:'dia'},{jp:'昔から',id:'sudah lama'},{jp:'大切にしていた',id:'simpan dengan penuh perhatian'},{jp:'手紙',id:'surat'},{jp:'見せてくれました',id:'memperlihatkan'}]},
+{jp:'その手紙には、十年前に交わした約束が書かれていました。',naturalId:'Di surat itu tertulis janji yang pernah kami buat sepuluh tahun lalu.',furigana:[{text:'手紙',reading:'てがみ'},{text:'十年前',reading:'じゅうねんまえ'},{text:'交わした',reading:'かわした'},{text:'約束',reading:'やくそく'},{text:'書かれて',reading:'かかれて'}],tokens:[{jp:'手紙',id:'surat'},{jp:'十年前',id:'sepuluh tahun lalu'},{jp:'交わした',id:'pernah kami buat'},{jp:'約束',id:'janji'},{jp:'書かれていました',id:'tertulis'}]},
+{jp:'私は内容を読んだ瞬間、胸の奥が少し熱くなりました。',naturalId:'Saat membaca isinya, dada saya terasa sedikit hangat.',furigana:[{text:'私',reading:'わたし'},{text:'内容',reading:'ないよう'},{text:'読んだ',reading:'よんだ'},{text:'瞬間',reading:'しゅんかん'},{text:'胸',reading:'むね'},{text:'奥',reading:'おく'},{text:'熱く',reading:'あつく'}],tokens:[{jp:'内容',id:'isinya'},{jp:'読んだ瞬間',id:'saat membaca'},{jp:'胸の奥',id:'dada saya'},{jp:'少し',id:'sedikit'},{jp:'熱くなりました',id:'terasa hangat'}]},
+{jp:'私たちは、いつか同じ町で本屋を開こうと話していたのです。',naturalId:'Kami dulu pernah berbicara bahwa suatu hari kami ingin membuka toko buku di kota yang sama.',furigana:[{text:'私たち',reading:'わたしたち'},{text:'同じ',reading:'おなじ'},{text:'町',reading:'まち'},{text:'本屋',reading:'ほんや'},{text:'開こう',reading:'ひらこう'},{text:'話して',reading:'はなして'}],tokens:[{jp:'私たち',id:'kami'},{jp:'いつか',id:'suatu hari'},{jp:'同じ町',id:'kota yang sama'},{jp:'本屋',id:'toko buku'},{jp:'開こう',id:'membuka'},{jp:'話していた',id:'pernah berbicara'}]},
+{jp:'しかし、大学を卒業してから、私たちは別々の道を進みました。',naturalId:'Namun setelah lulus kuliah, kami berjalan di jalan hidup yang berbeda.',furigana:[{text:'大学',reading:'だいがく'},{text:'卒業',reading:'そつぎょう'},{text:'別々',reading:'べつべつ'},{text:'道',reading:'みち'},{text:'進みました',reading:'すすみました'}],tokens:[{jp:'しかし',id:'namun'},{jp:'大学を卒業してから',id:'setelah lulus kuliah'},{jp:'別々の道',id:'jalan hidup yang berbeda'},{jp:'進みました',id:'berjalan'}]},
+{jp:'私は会社員になり、彼女は地方の図書館で働き始めました。',naturalId:'Saya menjadi pegawai perusahaan, sedangkan dia mulai bekerja di perpustakaan daerah.',furigana:[{text:'私',reading:'わたし'},{text:'会社員',reading:'かいしゃいん'},{text:'彼女',reading:'かのじょ'},{text:'地方',reading:'ちほう'},{text:'図書館',reading:'としょかん'},{text:'働き始めました',reading:'はたらきはじめました'}],tokens:[{jp:'会社員',id:'pegawai perusahaan'},{jp:'彼女',id:'dia'},{jp:'地方の図書館',id:'perpustakaan daerah'},{jp:'働き始めました',id:'mulai bekerja'}]},
+{jp:'忙しさを理由に、私はその約束を忘れたふりをしていました。',naturalId:'Dengan alasan sibuk, saya berpura-pura melupakan janji itu.',furigana:[{text:'忙しさ',reading:'いそがしさ'},{text:'理由',reading:'りゆう'},{text:'私',reading:'わたし'},{text:'約束',reading:'やくそく'},{text:'忘れた',reading:'わすれた'}],tokens:[{jp:'忙しさ',id:'sibuk'},{jp:'理由',id:'alasan'},{jp:'約束',id:'janji'},{jp:'忘れたふり',id:'berpura-pura melupakan'}]},
+{jp:'けれども彼女は、その夢を一度も手放していませんでした。',naturalId:'Tetapi dia tidak pernah melepaskan mimpi itu sekali pun.',furigana:[{text:'彼女',reading:'かのじょ'},{text:'夢',reading:'ゆめ'},{text:'一度',reading:'いちど'},{text:'手放して',reading:'てばなして'}],tokens:[{jp:'けれども',id:'tetapi'},{jp:'彼女',id:'dia'},{jp:'夢',id:'mimpi'},{jp:'一度も',id:'sekali pun'},{jp:'手放していませんでした',id:'tidak pernah melepaskan'}]},
+{jp:'喫茶店の窓の外では、雨が静かにガラスを叩いていました。',naturalId:'Di luar jendela kafe, hujan mengetuk kaca dengan tenang.',furigana:[{text:'喫茶店',reading:'きっさてん'},{text:'窓',reading:'まど'},{text:'外',reading:'そと'},{text:'雨',reading:'あめ'},{text:'静か',reading:'しずか'},{text:'叩いて',reading:'たたいて'}],tokens:[{jp:'喫茶店',id:'kafe'},{jp:'窓の外',id:'luar jendela'},{jp:'雨',id:'hujan'},{jp:'静かに',id:'dengan tenang'},{jp:'ガラス',id:'kaca'},{jp:'叩いていました',id:'mengetuk'}]},
+{jp:'その音を聞きながら、私は自分の弱さを認めるしかありませんでした。',naturalId:'Sambil mendengar suara itu, saya hanya bisa mengakui kelemahan diri sendiri.',furigana:[{text:'音',reading:'おと'},{text:'聞きながら',reading:'ききながら'},{text:'私',reading:'わたし'},{text:'自分',reading:'じぶん'},{text:'弱さ',reading:'よわさ'},{text:'認める',reading:'みとめる'}],tokens:[{jp:'音',id:'suara'},{jp:'聞きながら',id:'sambil mendengar'},{jp:'自分の弱さ',id:'kelemahan diri sendiri'},{jp:'認めるしかありませんでした',id:'hanya bisa mengakui'}]},
+{jp:'彼女は責めることなく、ただ静かに私の返事を待っていました。',naturalId:'Dia tidak menyalahkan saya dan hanya menunggu jawaban saya dengan tenang.',furigana:[{text:'彼女',reading:'かのじょ'},{text:'責める',reading:'せめる'},{text:'静か',reading:'しずか'},{text:'私',reading:'わたし'},{text:'返事',reading:'へんじ'},{text:'待って',reading:'まって'}],tokens:[{jp:'彼女',id:'dia'},{jp:'責めることなく',id:'tidak menyalahkan'},{jp:'静かに',id:'dengan tenang'},{jp:'返事',id:'jawaban'},{jp:'待っていました',id:'menunggu'}]},
+{jp:'私は深く息を吸い、もう一度その夢について考えたいと言いました。',naturalId:'Saya menarik napas dalam-dalam dan berkata ingin memikirkan mimpi itu sekali lagi.',furigana:[{text:'私',reading:'わたし'},{text:'深く',reading:'ふかく'},{text:'息',reading:'いき'},{text:'吸い',reading:'すい'},{text:'一度',reading:'いちど'},{text:'夢',reading:'ゆめ'},{text:'考えたい',reading:'かんがえたい'},{text:'言いました',reading:'いいました'}],tokens:[{jp:'深く息を吸い',id:'menarik napas dalam-dalam'},{jp:'もう一度',id:'sekali lagi'},{jp:'夢',id:'mimpi'},{jp:'考えたい',id:'ingin memikirkan'},{jp:'言いました',id:'berkata'}]},
+{jp:'すると彼女は、安心したように小さく笑いました。',naturalId:'Lalu dia tersenyum kecil seolah merasa lega.',furigana:[{text:'彼女',reading:'かのじょ'},{text:'安心',reading:'あんしん'},{text:'小さく',reading:'ちいさく'},{text:'笑いました',reading:'わらいました'}],tokens:[{jp:'すると',id:'lalu'},{jp:'彼女',id:'dia'},{jp:'安心したように',id:'seolah merasa lega'},{jp:'小さく笑いました',id:'tersenyum kecil'}]},
+{jp:'その笑顔を見て、私はまだ間に合うのかもしれないと思いました。',naturalId:'Melihat senyum itu, saya merasa mungkin semuanya belum terlambat.',furigana:[{text:'笑顔',reading:'えがお'},{text:'見て',reading:'みて'},{text:'私',reading:'わたし'},{text:'間に合う',reading:'まにあう'},{text:'思いました',reading:'おもいました'}],tokens:[{jp:'笑顔',id:'senyum'},{jp:'見て',id:'melihat'},{jp:'まだ間に合う',id:'belum terlambat'},{jp:'思いました',id:'merasa'}]},
+{jp:'翌週、私は会社を辞める準備を始めたわけではありません。',naturalId:'Minggu berikutnya, bukan berarti saya langsung mulai bersiap keluar dari perusahaan.',furigana:[{text:'翌週',reading:'よくしゅう'},{text:'私',reading:'わたし'},{text:'会社',reading:'かいしゃ'},{text:'辞める',reading:'やめる'},{text:'準備',reading:'じゅんび'},{text:'始めた',reading:'はじめた'}],tokens:[{jp:'翌週',id:'minggu berikutnya'},{jp:'会社',id:'perusahaan'},{jp:'辞める準備',id:'bersiap keluar'},{jp:'始めたわけではありません',id:'bukan berarti langsung mulai'}]},
+{jp:'まずは毎晩一時間だけ、本屋について調べることにしました。',naturalId:'Pertama-tama, saya memutuskan untuk meneliti tentang toko buku satu jam setiap malam.',furigana:[{text:'毎晩',reading:'まいばん'},{text:'一時間',reading:'いちじかん'},{text:'本屋',reading:'ほんや'},{text:'調べる',reading:'しらべる'},{text:'決めました',reading:'きめました'}],tokens:[{jp:'まずは',id:'pertama-tama'},{jp:'毎晩一時間',id:'satu jam setiap malam'},{jp:'本屋',id:'toko buku'},{jp:'調べること',id:'meneliti'},{jp:'決めました',id:'memutuskan'}]},
+{jp:'小さな一歩でも、止まっていた時間を動かすには十分でした。',naturalId:'Meski hanya langkah kecil, itu cukup untuk menggerakkan kembali waktu yang sempat berhenti.',furigana:[{text:'小さな',reading:'ちいさな'},{text:'一歩',reading:'いっぽ'},{text:'止まって',reading:'とまって'},{text:'時間',reading:'じかん'},{text:'動かす',reading:'うごかす'},{text:'十分',reading:'じゅうぶん'}],tokens:[{jp:'小さな一歩',id:'langkah kecil'},{jp:'止まっていた時間',id:'waktu yang sempat berhenti'},{jp:'動かす',id:'menggerakkan kembali'},{jp:'十分でした',id:'cukup'}]},
+{jp:'三か月後、私たちは古い商店街の空き店舗を見に行きました。',naturalId:'Tiga bulan kemudian, kami pergi melihat toko kosong di kawasan pertokoan lama.',furigana:[{text:'三か月後',reading:'さんかげつご'},{text:'私たち',reading:'わたしたち'},{text:'古い',reading:'ふるい'},{text:'商店街',reading:'しょうてんがい'},{text:'空き店舗',reading:'あきてんぽ'},{text:'見に行きました',reading:'みにいきました'}],tokens:[{jp:'三か月後',id:'tiga bulan kemudian'},{jp:'古い商店街',id:'kawasan pertokoan lama'},{jp:'空き店舗',id:'toko kosong'},{jp:'見に行きました',id:'pergi melihat'}]},
+{jp:'建物は古かったものの、窓から入る光がとても柔らかく感じられました。',naturalId:'Bangunannya memang tua, tetapi cahaya yang masuk dari jendela terasa sangat lembut.',furigana:[{text:'建物',reading:'たてもの'},{text:'古かった',reading:'ふるかった'},{text:'窓',reading:'まど'},{text:'入る',reading:'はいる'},{text:'光',reading:'ひかり'},{text:'柔らかく',reading:'やわらかく'},{text:'感じられました',reading:'かんじられました'}],tokens:[{jp:'建物',id:'bangunannya'},{jp:'古かった',id:'tua'},{jp:'窓から入る光',id:'cahaya yang masuk dari jendela'},{jp:'柔らかく',id:'lembut'},{jp:'感じられました',id:'terasa'}]},
+{jp:'彼女は棚の位置を想像しながら、楽しそうに店内を歩き回りました。',naturalId:'Sambil membayangkan posisi rak, dia berkeliling di dalam toko dengan wajah senang.',furigana:[{text:'彼女',reading:'かのじょ'},{text:'棚',reading:'たな'},{text:'位置',reading:'いち'},{text:'想像',reading:'そうぞう'},{text:'楽しそう',reading:'たのしそう'},{text:'店内',reading:'てんない'},{text:'歩き回りました',reading:'あるきまわりました'}],tokens:[{jp:'棚の位置',id:'posisi rak'},{jp:'想像しながら',id:'sambil membayangkan'},{jp:'楽しそうに',id:'dengan wajah senang'},{jp:'店内',id:'dalam toko'},{jp:'歩き回りました',id:'berkeliling'}]},
+{jp:'私はその姿を見て、ようやく自分も前に進める気がしました。',naturalId:'Melihat dirinya seperti itu, akhirnya saya merasa bisa ikut melangkah maju.',furigana:[{text:'私',reading:'わたし'},{text:'姿',reading:'すがた'},{text:'見て',reading:'みて'},{text:'自分',reading:'じぶん'},{text:'前',reading:'まえ'},{text:'進める',reading:'すすめる'},{text:'気',reading:'き'}],tokens:[{jp:'姿',id:'dirinya seperti itu'},{jp:'見て',id:'melihat'},{jp:'ようやく',id:'akhirnya'},{jp:'前に進める',id:'melangkah maju'},{jp:'気がしました',id:'merasa bisa'}]},
+{jp:'あの日の雨は、終わりではなく始まりの合図だったのです。',naturalId:'Hujan pada hari itu ternyata bukan tanda akhir, melainkan tanda permulaan.',furigana:[{text:'日',reading:'ひ'},{text:'雨',reading:'あめ'},{text:'終わり',reading:'おわり'},{text:'始まり',reading:'はじまり'},{text:'合図',reading:'あいず'}],tokens:[{jp:'あの日の雨',id:'hujan pada hari itu'},{jp:'終わり',id:'akhir'},{jp:'始まり',id:'permulaan'},{jp:'合図',id:'tanda'}]}
+]};
+let state=JSON.parse(localStorage.getItem('wira_bw_state')||'{"stories":[],"activeId":null,"page":0,"srs":[]}');let showRuby=true;const $=q=>document.querySelector(q);const $$=q=>[...document.querySelectorAll(q)];
+function save(){localStorage.setItem('wira_bw_state',JSON.stringify(state))}function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1400)}function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function tab(id){$$('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===id));$$('.page').forEach(p=>p.classList.toggle('active',p.id===id));if(id==='library')renderLibrary();if(id==='reader')renderReader();if(id==='srs')renderSRS()}$$('.tab').forEach(b=>b.onclick=()=>tab(b.dataset.page));
+function normalize(story){story.id=story.id||('story_'+Date.now());story.title=story.title||'Untitled Story';story.level=story.level||'N2';story.author=story.author||story.writer||story.creator||story.penulis||story.by||'';story.sentences=(story.sentences||[]).map((s,i)=>({no:s.no??(i+1),jp:s.jp||s.japanese||'',naturalId:s.naturalId||s.id||s.translation||'',furigana:s.furigana||[],tokens:(s.tokens||[]).map(t=>({...t,type:t.type||(PARTICLES.has(t.jp)?'particle':'word')})),image:s.image||null,images:s.images||[],media:s.media||s.medias||[],kind:s.kind||'sentence'})).filter(s=>s.jp);story.images=Array.isArray(story.images)?story.images:[];story.media=Array.isArray(story.media)?story.media:[];story.progress=story.progress||{page:0};return story}
+function importStory(obj){let story=normalize(obj);const idx=state.stories.findIndex(s=>s.id===story.id);if(idx>=0){const old=state.stories[idx];story.progress=old.progress||story.progress;state.stories[idx]=story}else state.stories.unshift(story);state.activeId=story.id;state.page=story.progress?.page||0;save();renderLibrary();toast('Cerita masuk Library');tab('library')}
+function hasKanji(s=''){return /[一-龯々〆ヵヶ]/.test(String(s))}
+function kataToHira(s=''){return String(s).replace(/[ァ-ン]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-0x60))}
+function readingFromFurigana(text='',furigana=[]){let result=String(text);const entries=[...furigana].filter(f=>f&&f.text&&f.reading).sort((a,b)=>String(b.text).length-String(a.text).length);for(const f of entries){result=result.split(String(f.text)).join(String(f.reading))}return kataToHira(result)}
+function tokenReading(t,s){if(t.reading||t.kana||t.yomi)return kataToHira(t.reading||t.kana||t.yomi);const jp=String(t.jp||'');const exact=(s.furigana||[]).find(f=>f.text===jp);if(exact)return kataToHira(exact.reading);const built=readingFromFurigana(jp,s.furigana||[]);return hasKanji(built)?'':built}
+function repairSRSReadings(){
+  const lookup=new Map();
+  (state.stories||[]).forEach(story=>{
+    (story.sentences||[]).forEach(s=>{
+      (s.tokens||[]).forEach(t=>{
+        const reading=tokenReading(t,s);
+        if(t&&t.jp&&reading&&!hasKanji(reading)){
+          lookup.set(`${story.id}::${t.jp}`,reading);
+          if(!lookup.has(`::${t.jp}`))lookup.set(`::${t.jp}`,reading);
+        }
+      });
+    });
+  });
+  (state.srs||[]).forEach(v=>{
+    const key=`${v.sourceId||''}::${v.jp}`;
+    const fixed=lookup.get(key)||lookup.get(`::${v.jp}`);
+    if(fixed&&(!v.reading||hasKanji(v.reading)))v.reading=fixed;
+  });
+}
+function addSRSFromSavedPages(story){const ps=pages(story);const endPage=Math.max(0,Math.min(story.progress?.page||0,ps.length-1));const readSentences=ps.slice(0,endPage+1).flat();const existing=new Set(state.srs.map(v=>`${v.sourceId||''}::${v.jp}`));readSentences.forEach(s=>(s.tokens||[]).forEach(t=>{const key=`${story.id}::${t.jp}`;const reading=tokenReading(t,s);if(t.type!=='particle'&&t.jp&&t.id&&reading&&!existing.has(key)){state.srs.push({jp:t.jp,id:t.id,reading,level:0,next:Date.now(),source:story.title,sourceId:story.id,sourcePage:endPage+1});existing.add(key)}}))}
+function getActive(){return state.stories.find(s=>s.id===state.activeId)}function pages(story){const size=story.pageSize||DEFAULT_PAGE_SIZE;const arr=[];for(let i=0;i<story.sentences.length;i+=size)arr.push(story.sentences.slice(i,i+size));return arr}
+function rubySentence(jp,furigana=[]){const text=String(jp||'');const spans=[];const entries=[...furigana].filter(f=>f&&f.text&&f.reading).sort((a,b)=>String(b.text).length-String(a.text).length);const used=new Array(text.length).fill(false);for(const f of entries){const target=String(f.text);let start=0;while(target&&(start=text.indexOf(target,start))!==-1){const end=start+target.length;let clash=false;for(let i=start;i<end;i++){if(used[i]){clash=true;break}}if(!clash){for(let i=start;i<end;i++)used[i]=true;spans.push({start,end,text:target,reading:String(f.reading)})}start=end}}spans.sort((a,b)=>a.start-b.start);let out='',pos=0;for(const sp of spans){out+=escapeHtml(text.slice(pos,sp.start));const cls=hasKanji(sp.text)?'ruby furigana-blur':'ruby';const title=hasKanji(sp.text)?' title="Klik untuk melihat furigana" tabindex="0"':'';out+=`<ruby class="${cls}"${title}>${escapeHtml(sp.text)}<rt>${escapeHtml(sp.reading)}</rt></ruby>`;pos=sp.end}out+=escapeHtml(text.slice(pos));return out}
+function escapeReg(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function imageUrl(img){return typeof img==='string'?img:(img?.src||img?.url||img?.href||'')}
+function mediaType(item){if(!item)return 'image';const explicit=String(item.type||item.mediaType||'').toLowerCase();if(explicit)return explicit;const src=imageUrl(item).split('?')[0].toLowerCase();if(src.match(/\.(mp4|webm|ogg|mov|m4v)$/))return 'video';if(src.includes('youtube.com')||src.includes('youtu.be'))return 'youtube';return 'image'}
+function renderStoryMedia(item){const src=imageUrl(item);if(!src)return '';const caption=typeof item==='string'?'':(item.caption||item.alt||'');const type=mediaType(item);let body='';if(type==='video')body=`<video src="${escapeHtml(src)}" controls playsinline preload="metadata"></video>`;else if(type==='youtube'){const embed=src.includes('watch?v=')?src.replace('watch?v=','embed/'):src.replace('youtu.be/','www.youtube.com/embed/');body=`<div class="story-embed"><iframe src="${escapeHtml(embed)}" allowfullscreen loading="lazy"></iframe></div>`}else if(type==='link'||type==='external')body=`<a class="story-link-card" href="${escapeHtml(src)}" target="_blank" rel="noopener">${escapeHtml(caption||'Buka media asli')}</a>`;else body=`<img src="${escapeHtml(src)}" alt="${escapeHtml(caption||'story media')}" loading="lazy">`;return `<figure class="story-image-block" data-media-type="${escapeHtml(type)}">${body}${(caption&&type!=='link'&&type!=='external')?`<figcaption class="story-image-caption">${escapeHtml(caption)}</figcaption>`:''}</figure>`}
+function sentenceImages(s){let media=[];if(s.image)media.push(s.image);if(Array.isArray(s.images))media=media.concat(s.images);if(Array.isArray(s.media))media=media.concat(s.media);return media.map(renderStoryMedia).join('')}
+function imagesAfterSentence(story,s){const no=Number(s.no);const all=[...(story.images||[]),...(story.media||[])];return all.filter(img=>{const after=Number(img.afterNo??img.sentenceNo??img.sentenceIndex??img.afterSentence??img.after);if(Number.isFinite(after)&&after===no)return true;if(typeof img.position==='string'){const m=img.position.match(/after-s0*(\d+)/i);if(m&&Number(m[1])===no)return true}return false}).map(renderStoryMedia).join('')}
+function renderSentence(s,story){return `<div class="sentence" id="sentence-${escapeHtml(s.no)}"><div class="jp">${rubySentence(s.jp,s.furigana)}</div><div class="id">${escapeHtml(s.naturalId)}</div></div>${sentenceImages(s)}${imagesAfterSentence(story,s)}`}
+function getStoryTheme(story){return story.theme||story.genre||story.topic||story.category||story.storyTheme||story.tone||'Misteri TV'}
+function renderReader(){const story=getActive(),book=$('#book');if(!story){$('#readerTitle').textContent='Reader';$('#readerMeta').innerHTML='<span>Pengarang: -</span><span>Tema: -</span>';$('#pageInfo').textContent='0/0';const bottom=$('#pageInfoBottom');if(bottom)bottom.textContent='0/0';book.innerHTML='<div class="empty">Belum ada cerita aktif. Pilih cerita dari Library dulu.</div>';return}const ps=pages(story);state.page=Math.max(0,Math.min(state.page,ps.length-1));const list=ps[state.page]||[];$('#readerTitle').textContent=story.title;const author=story.author||story.writer||story.creator||'雨穴';const theme=getStoryTheme(story);$('#readerMeta').innerHTML=`<span>Pengarang: ${escapeHtml(author)}</span><span>Tema: ${escapeHtml(theme)}</span>`;const pageText=`${state.page+1}/${ps.length}`;$('#pageInfo').textContent=pageText;const bottom=$('#pageInfoBottom');if(bottom)bottom.textContent=pageText;book.classList.add('show-ruby');book.innerHTML=list.map(s=>renderSentence(s,story)).join('');const nextBtn=$('#nextPage');if(nextBtn){const last=state.page>=ps.length-1;nextBtn.textContent=last?'TAMAT':'Selanjutnya →';nextBtn.classList.toggle('finish',last)}story.lastOpenPage=state.page;save()}
+function displayAuthor(story){return story.author||story.writer||story.creator||story.penulis||story.by||'Tidak diketahui'}
+function renderLibrary(){const el=$('#libraryList');$('#storyCount').textContent=`${state.stories.length} cerita`;if(!state.stories.length){el.innerHTML='<div class="empty">Library kosong. Buka halaman Import untuk menambahkan cerita JSON.</div>';return}el.innerHTML=state.stories.map(s=>{const total=pages(s).length||1,pg=s.progress?.page||0,pct=Math.round(((pg+1)/total)*100);const cover=s.coverImage||'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 110"><rect width="80" height="110" rx="14" fill="#111"/><text x="40" y="62" font-size="28" text-anchor="middle" fill="white">読</text></svg>');const author=displayAuthor(s);const theme=getStoryTheme(s);const sid=encodeURIComponent(s.id);return `<div class="story"><img class="cover" src="${escapeHtml(cover)}" alt=""><div style="flex:1"><h3>${escapeHtml(s.title)}</h3><div class="meta">${escapeHtml(s.level||'N2')} • ${escapeHtml(theme)} • ${escapeHtml(author)} • ${total} halaman</div><div class="progress"><div class="bar" style="width:${pct}%"></div></div><div class="actions" style="margin-top:8px"><button type="button" class="btn small" data-open-story="${sid}">${pg>0?'Lanjutkan':'Mulai baca'}</button><button type="button" class="btn small edit" data-edit-story="${sid}">Edit</button><button type="button" class="btn small danger" data-remove-story="${sid}">Hapus</button></div></div></div>`}).join('')} 
+function showFossilLoader(ms=850,done){const loader=$('#appLoader');if(!loader){if(done)done();return}loader.classList.remove('hide');setTimeout(()=>{loader.classList.add('hide');if(done)done()},ms)}
+function decodeStoryId(id){try{return decodeURIComponent(id)}catch(e){return id}}
+window.openStory=id=>{id=decodeStoryId(id);showFossilLoader(850,()=>{state.activeId=id;const s=getActive();state.page=s?.lastOpenPage??s?.progress?.page??0;save();tab('reader');scrollReaderTop()})};
+window.removeStory=id=>{id=decodeStoryId(id);const story=state.stories.find(s=>s.id===id);const name=story?.title||'cerita ini';if(!confirm(`Apakah kamu mau menghapus cerita ini?\n\n${name}`))return;state.stories=state.stories.filter(s=>s.id!==id);state.srs=(state.srs||[]).filter(v=>(v.sourceId||'')!==id);if(state.activeId===id){state.activeId=state.stories[0]?.id||null;state.page=0}save();renderLibrary();renderSRS();toast('Cerita dihapus')};
+function openEditStory(id){id=decodeStoryId(id);const story=state.stories.find(s=>s.id===id);if(!story)return;$('#editStoryId').value=id;$('#editStoryTitle').value=story.title||'';$('#editStoryLevel').value=story.level||'';const themeValue=getStoryTheme(story);$('#editStoryTheme').value=themeValue==='Misteri TV'?'':themeValue;$('#editStoryAuthor').value=displayAuthor(story)==='Tidak diketahui'?'':displayAuthor(story);const modal=$('#editStoryModal');if(modal){modal.classList.add('show');modal.setAttribute('aria-hidden','false')}setTimeout(()=>$('#editStoryTitle')?.focus(),40)}
+function closeEditStory(){const modal=$('#editStoryModal');if(modal){modal.classList.remove('show');modal.setAttribute('aria-hidden','true')}}
+function saveEditStory(){const id=$('#editStoryId')?.value;const story=state.stories.find(s=>s.id===id);if(!story)return;story.title=($('#editStoryTitle')?.value||story.title||'Untitled Story').trim()||'Untitled Story';story.level=($('#editStoryLevel')?.value||story.level||'N2').trim()||'N2';const theme=($('#editStoryTheme')?.value||'').trim();story.theme=theme;story.genre=theme;story.topic=theme;story.category=theme;story.storyTheme=theme;story.tone=theme;story.author=($('#editStoryAuthor')?.value||'').trim();save();renderLibrary();renderReader();closeEditStory();toast('Cerita diperbarui')}
+document.addEventListener('click',e=>{const blurFurigana=e.target.closest('.book .jp .furigana-blur');if(blurFurigana){e.preventDefault();e.stopPropagation();blurFurigana.classList.toggle('revealed');return}const openBtn=e.target.closest('[data-open-story]');if(openBtn){e.preventDefault();openStory(openBtn.dataset.openStory);return}const editBtn=e.target.closest('[data-edit-story]');if(editBtn){e.preventDefault();e.stopPropagation();openEditStory(editBtn.dataset.editStory);return}const removeBtn=e.target.closest('[data-remove-story]');if(removeBtn){e.preventDefault();e.stopPropagation();removeStory(removeBtn.dataset.removeStory)}});
+document.addEventListener('keydown',e=>{const blurFurigana=e.target.closest?.('.book .jp .furigana-blur');if(blurFurigana&&(e.key==='Enter'||e.key===' ')){e.preventDefault();blurFurigana.classList.toggle('revealed')}});
+$('#closeEditStory')?.addEventListener('click',closeEditStory);$('#cancelEditStory')?.addEventListener('click',closeEditStory);$('#saveEditStory')?.addEventListener('click',saveEditStory);$('#editStoryModal')?.addEventListener('click',e=>{if(e.target.id==='editStoryModal')closeEditStory()});
+function scrollReaderTop(){const target=$('.reader-top')||$('#book');if(!target)return;setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),30)}
+function finishCurrentStory(){const story=getActive();if(story){const max=pages(story).length-1;state.page=max;story.progress={page:max,savedAt:Date.now(),finishedAt:Date.now()};story.lastOpenPage=max;addSRSFromSavedPages(story);save();renderLibrary();renderSRS()}}function showFinishModal(){finishCurrentStory();const m=$('#finishModal');if(m)m.classList.add('show');setTimeout(()=>{if(m)m.classList.remove('show');tab('library');window.scrollTo({top:0,behavior:'smooth'})},1500)}
+function go(delta){const story=getActive();if(!story)return;const max=pages(story).length-1;if(delta>0&&state.page>=max){showFinishModal();return}const next=Math.max(0,Math.min(max,state.page+delta));if(next===state.page)return;state.page=next;const b=$('#book');b.classList.remove('turn-next','turn-prev');void b.offsetWidth;b.classList.add(delta>0?'turn-next':'turn-prev');renderReader();save();scrollReaderTop()}$('#prevPage').onclick=()=>go(-1);$('#nextPage').onclick=()=>go(1);const closeFinish=$('#closeFinishModal');if(closeFinish)closeFinish.onclick=()=>$('#finishModal')?.classList.remove('show');$('#finishModal').onclick=e=>{if(e.target.id==='finishModal')e.currentTarget.classList.remove('show')};document.addEventListener('keydown',e=>{if($('.page.active')?.id!=='reader')return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+function saveReaderProgress(){const s=getActive();if(s){s.progress={page:state.page,savedAt:Date.now()};s.lastOpenPage=state.page;addSRSFromSavedPages(s);save();renderLibrary();renderSRS();const btn=$('#floatingSaveProgress');if(btn){btn.classList.add('saved');setTimeout(()=>btn.classList.remove('saved'),3000)}toast(`Halaman ${state.page+1} disimpan + SRS diperbarui`)}}
+$('#floatingSaveProgress').onclick=saveReaderProgress;
+$('#importJson').onclick=()=>{const f=$('#jsonFile').files[0];if(!f){toast('Pilih file JSON dulu');return}const r=new FileReader();r.onload=()=>{try{importStory(JSON.parse(r.result));$('#jsonFile').value=''}catch(e){toast('JSON tidak valid')}};r.readAsText(f)};
+let srsListFilter=null;
+function srsStats(){const total=state.srs.length;const ready=state.srs.filter(v=>(v.next||0)<=Date.now()).length;const unlearned=state.srs.filter(v=>(v.level||0)<=0).length;const mastered=state.srs.filter(v=>(v.level||0)>=12).length;const learning=Math.max(0,total-unlearned-mastered);return {total,ready,unlearned,learning,mastered}}
+function renderSRSStats(){const st=srsStats();const active=k=>srsListFilter===k?' active':'';return `<div class="srs-stats"><div class="srs-stat${active('unlearned')}" data-srs-list="unlearned"><strong>${st.unlearned}</strong><span>Belum dipelajari</span></div><div class="srs-stat${active('learning')}" data-srs-list="learning"><strong>${st.learning}</strong><span>Belajar</span></div><div class="srs-stat${active('mastered')}" data-srs-list="mastered"><strong>${st.mastered}</strong><span>Dikuasai</span></div><div class="srs-stat ready${active('ready')}" data-srs-list="ready"><strong>${st.ready}</strong><span>Siap di SRS</span></div></div>`}
+function srsItemsByFilter(filter){const now=Date.now();const arr=state.srs||[];if(filter==='unlearned')return arr.filter(v=>(v.level||0)<=0);if(filter==='learning')return arr.filter(v=>(v.level||0)>0&&(v.level||0)<12);if(filter==='mastered')return arr.filter(v=>(v.level||0)>=12);if(filter==='ready')return arr.filter(v=>(v.next||0)<=now);return []}
+function timeUntilText(ts){const diff=(ts||0)-Date.now();if(diff<=0)return 'Siap sekarang';const m=Math.ceil(diff/60000);if(m<60)return `Ulang lagi dalam ${m} menit`;const h=Math.ceil(m/60);if(h<24)return `Ulang lagi dalam ${h} jam`;const d=Math.ceil(h/24);return `Ulang lagi dalam ${d} hari`}
+function readingOf(v){return v.reading||guessReadingFromJP(v.jp)||''}
+function renderSRSWordRuby(v){const r=readingOf(v);return r?`<ruby>${escapeHtml(v.jp)}<rt>${escapeHtml(r)}</rt></ruby>`:escapeHtml(v.jp)}
+function renderSRSBrowser(){if(!srsListFilter)return '';const labels={unlearned:'Belum dipelajari',learning:'Belajar',mastered:'Dikuasai',ready:'Siap di SRS'};const items=srsItemsByFilter(srsListFilter);if(!items.length)return `<div class="srs-browser"><div class="srs-browser-head"><strong>${labels[srsListFilter]}</strong><button type="button" class="btn small secondary" data-srs-list-close="1">Tutup</button></div><div class="empty">Belum ada kosakata di kategori ini.</div></div>`;return `<div class="srs-browser"><div class="srs-browser-head"><strong>${labels[srsListFilter]} • ${items.length} kosakata</strong><button type="button" class="btn small secondary" data-srs-list-close="1">Tutup</button></div><div class="srs-browser-list">${items.map(v=>`<div class="srs-mini-card"><div class="srs-mini-ruby">${renderSRSWordRuby(v)}</div><div class="srs-mini-meaning">${escapeHtml(v.id||v.meaning||'-')}</div><div class="srs-mini-time">${timeUntilText(v.next)}</div><div class="srs-mini-level">Level ${v.level||0}/12</div></div>`).join('')}</div></div>`}
+function renderSRSProgressButton(){return renderSRSStats()}
+function renderSRSPopup(){const box=$('#srsPopupContent');if(!box)return;box.innerHTML=renderSRSBrowser()||'<div class="empty">Pilih salah satu kartu progress SRS.</div>';bindSRSStats(true)}
+function openSRSPopup(reset=false){const m=$('#srsPopupModal');if(!m)return;if(reset)srsListFilter=null;m.classList.add('show');m.setAttribute('aria-hidden','false');renderSRSPopup()}
+function closeSRSPopup(){const m=$('#srsPopupModal');if(!m)return;m.classList.remove('show');m.setAttribute('aria-hidden','true')}
+function bindSRSProgressButton(){bindSRSStats(false)}
+function bindSRSStats(inPopup=false){const root=inPopup?$('#srsPopupContent'):$('#quizArea')||document;root.querySelectorAll('[data-srs-list]').forEach(el=>{el.onclick=()=>{const key=el.dataset.srsList;srsListFilter=key;if(inPopup)renderSRSPopup();else openSRSPopup(false)}});const close=root.querySelector('[data-srs-list-close]');if(close)close.onclick=()=>{srsListFilter=null;if(inPopup)renderSRSPopup();else renderSRS()}}
+function normalizeKana(s=''){return kataToHira(String(s).trim()).replace(/[\s　ー－・.。、,，!！?？]/g,'')}
+function romajiToHiragana(input='',finalize=false){
+  let s=String(input).toLowerCase();
+  const map={kya:'きゃ',kyu:'きゅ',kyo:'きょ',sha:'しゃ',shu:'しゅ',sho:'しょ',sya:'しゃ',syu:'しゅ',syo:'しょ',cha:'ちゃ',chu:'ちゅ',cho:'ちょ',tya:'ちゃ',tyu:'ちゅ',tyo:'ちょ',nya:'にゃ',nyu:'にゅ',nyo:'にょ',hya:'ひゃ',hyu:'ひゅ',hyo:'ひょ',mya:'みゃ',myu:'みゅ',myo:'みょ',rya:'りゃ',ryu:'りゅ',ryo:'りょ',gya:'ぎゃ',gyu:'ぎゅ',gyo:'ぎょ',ja:'じゃ',ju:'じゅ',jo:'じょ',jya:'じゃ',jyu:'じゅ',jyo:'じょ',bya:'びゃ',byu:'びゅ',byo:'びょ',pya:'ぴゃ',pyu:'ぴゅ',pyo:'ぴょ',fa:'ふぁ',fi:'ふぃ',fe:'ふぇ',fo:'ふぉ',va:'ゔぁ',vi:'ゔぃ',vu:'ゔ',ve:'ゔぇ',vo:'ゔぉ',wi:'うぃ',we:'うぇ',kwa:'くぁ',gwa:'ぐぁ',shi:'し',chi:'ち',tsu:'つ',fu:'ふ',ji:'じ',ka:'か',ki:'き',ku:'く',ke:'け',ko:'こ',sa:'さ',su:'す',se:'せ',so:'そ',ta:'た',te:'て',to:'と',na:'な',ni:'に',nu:'ぬ',ne:'ね',no:'の',ha:'は',hi:'ひ',he:'へ',ho:'ほ',ma:'ま',mi:'み',mu:'む',me:'め',mo:'も',ya:'や',yu:'ゆ',yo:'よ',ra:'ら',ri:'り',ru:'る',re:'れ',ro:'ろ',wa:'わ',wo:'を',ga:'が',gi:'ぎ',gu:'ぐ',ge:'げ',go:'ご',za:'ざ',zi:'じ',zu:'ず',ze:'ぜ',zo:'ぞ',da:'だ',di:'ぢ',du:'づ',de:'で',do:'ど',ba:'ば',bi:'び',bu:'ぶ',be:'べ',bo:'ぼ',pa:'ぱ',pi:'ぴ',pu:'ぷ',pe:'ぺ',po:'ぽ',a:'あ',i:'い',u:'う',e:'え',o:'お'};
+  let out='',i=0;
+  while(i<s.length){
+    const ch=s[i], next=s[i+1]||'';
+
+    // Huruf kecil ganda: kka -> っか, tta -> った, dll.
+    if(i+1<s.length&&s[i]===s[i+1]&&'bcdfghjklmpqrstvwxyz'.includes(s[i])&&s[i]!=='n'){
+      out+='っ';i++;continue
+    }
+
+    // Coba pasangan romaji dulu. Ini yang memperbaiki bug: no -> の, bukan n + お.
+    let done=false;
+    for(const len of [3,2,1]){
+      const chunk=s.slice(i,i+len);
+      if(map[chunk]){out+=map[chunk];i+=len;done=true;break}
+    }
+    if(done)continue;
+
+    // N ditahan dulu kalau masih mungkin menjadi na/ni/nu/ne/no/nya/nyu/nyo.
+    if(ch==='n'){
+      if(next==='n'){out+='ん';i+=2;continue}
+      if(next && !'aiueoy'.includes(next)){out+='ん';i++;continue}
+      if(!next && finalize){out+='ん';i++;continue}
+      out+='n';i++;continue
+    }
+
+    out+=s[i];i++;
+  }
+  return out
+}
+function isCorrectReading(input,item){const converted=romajiToHiragana(input,true);return normalizeKana(converted)===normalizeKana(item.reading||'')}
+function srsInterval(level){const intervals=[0,600000,14400000,28800000,86400000,172800000,345600000,604800000,1209600000,2592000000,5184000000,7776000000,15552000000];return intervals[Math.max(0,Math.min(12,level))]||600000}
+function pickSRSQuestion(){repairSRSReadings();const valid=state.srs.filter(v=>v.reading&&!hasKanji(v.reading));const due=valid.filter(v=>(v.next||0)<=Date.now()&&(v.level||0)<12);if(due.length)return due.sort((a,b)=>(a.next||0)-(b.next||0))[0];return valid.filter(v=>(v.level||0)<12)[0]||valid[0]||state.srs[0]}
+let srsFeedbackMode=false;
+function renderSRS(feedback){repairSRSReadings();const area=$('#quizArea');const st=srsStats();$('#srsCount').textContent=`${st.total} kosakata`;srsFeedbackMode=!!feedback;if(!state.srs.length){area.className='card srs-card'+(srsListFilter?' has-browser':'');area.innerHTML=renderSRSProgressButton()+'<div class="empty">Belum ada kosakata. Simpan halaman di Reader dulu agar kosakata masuk SRS.</div>';bindSRSProgressButton();return}const q=feedback?.item||pickSRSQuestion();if(!q||!q.reading||hasKanji(q.reading)){area.className='card srs-card'+(srsListFilter?' has-browser':'');area.innerHTML=renderSRSProgressButton()+'<div class="empty">Kosakata SRS belum punya data furigana yang valid. Import JSON furigana terbaru lalu simpan halaman Reader lagi.</div>';bindSRSProgressButton();return}area.className='card srs-card'+(srsListFilter?' has-browser':'')+(feedback?.ok?' correct':feedback?.ok===false?' wrong':'');const current=feedback?.item||q;const questionBlock=feedback?`<div class="quiz-word answer-shown"><ruby>${escapeHtml(current.jp)}<rt>${escapeHtml(current.reading||'')}</rt></ruby></div><div class="srs-answer-meaning">${escapeHtml(current.id||current.meaning||'-')}</div>`:`<div class="quiz-word">${escapeHtml(q.jp)}</div>`;area.innerHTML=`${renderSRSProgressButton()}${questionBlock}<div class="srs-level">Level ${current.level||0}/12</div><p class="muted">Ketik <b>cara baca hiragana</b> dari kosakata ini.</p><form class="srs-input-wrap" id="srsForm"><input class="srs-input" id="srsInput" autocomplete="off" autocapitalize="off" spellcheck="false" lang="ja" inputmode="kana" placeholder="contoh: ばんぐみ" value="${feedback?escapeHtml(feedback.input||''):''}"><button class="btn srs-submit" type="submit">${feedback?'Berikutnya':'Cek'}</button></form>`;bindSRSProgressButton();const input=$('#srsInput');if(input){setTimeout(()=>input.focus(),50);input.oninput=()=>{const converted=romajiToHiragana(input.value);if(converted!==input.value)input.value=converted}}const form=$('#srsForm');if(form){form.onsubmit=e=>{e.preventDefault();if(srsFeedbackMode){renderSRS();return}answerSRS(q.jp,input.value)}}}
+function answerSRS(jp,input){const v=state.srs.find(x=>x.jp===jp);if(!v)return;const ok=isCorrectReading(input,v);if(ok){v.level=Math.min(12,(v.level||0)+1);v.next=Date.now()+srsInterval(v.level)}else{v.level=Math.max(0,(v.level||0)-1);v.next=Date.now()+600000}save();renderSRS({ok,item:v,input})}
+window.answerSRS=answerSRS;
+$('#srsPopupModal')?.addEventListener('click',e=>{if(e.target.id==='srsPopupModal')closeSRSPopup()});$('#closeSrsPopup')?.addEventListener('click',closeSRSPopup);
+renderLibrary();renderReader();renderSRS();setTimeout(()=>$('#appLoader')?.classList.add('hide'),900);
+</script>
+</body>
+</html>
