@@ -2945,6 +2945,8 @@ function isCorrectReading(input,item){const converted=romajiToHiragana(input,tru
 function srsInterval(level){const intervals=[0,600000,14400000,28800000,86400000,172800000,345600000,604800000,1209600000,2592000000,5184000000,7776000000,15552000000];return intervals[Math.max(0,Math.min(12,level))]||600000}
 function pickSRSQuestion(){repairSRSReadings();const valid=state.srs.filter(v=>v.reading&&!hasKanji(v.reading));const due=valid.filter(v=>(v.next||0)<=Date.now()&&(v.level||0)<12);if(due.length)return due.sort((a,b)=>(a.next||0)-(b.next||0))[0];return valid.filter(v=>(v.level||0)<12)[0]||valid[0]||state.srs[0]}
 let srsFeedbackMode=false;
+let srsKeepKeyboard=false;
+function shouldKeepSRSKeyboard(){return !!srsKeepKeyboard && document.getElementById('srs')?.classList.contains('active')}
 function srsSourceTitle(v){const story=state.stories.find(s=>s.id===(v?.sourceId||''));return story?.title||v?.source||'Tidak diketahui'}
 function renderSRSSourceCard(v){return `<div class="srs-source-card">${escapeHtml(srsSourceTitle(v))}</div>`}
 function scrollToSRSCard(mode){
@@ -2986,23 +2988,29 @@ function renderSRS(feedback){
   const input=$('#srsInput');
   const submitBtn=$('#srsSubmitBtn');
   const focusInput=()=>{try{input&&input.focus({preventScroll:true})}catch(e){input&&input.focus()}};
+  const keepKeyboard=()=>{if(shouldKeepSRSKeyboard())focusInput()};
   if(input){
+    input.addEventListener('focus',()=>{srsKeepKeyboard=true;document.body.classList.add('srs-focus-lock')});
+    input.addEventListener('pointerdown',()=>{srsKeepKeyboard=true;document.body.classList.add('srs-focus-lock')});
+    input.addEventListener('touchstart',()=>{srsKeepKeyboard=true;document.body.classList.add('srs-focus-lock')},{passive:true});
     if(feedback){
       const lockedValue=input.value;
-      const keepKeyboard=()=>{try{input.focus({preventScroll:true})}catch(e){input.focus()}};
       input.addEventListener('paste',e=>{e.preventDefault();input.value=lockedValue;keepKeyboard()});
       input.addEventListener('drop',e=>{e.preventDefault();input.value=lockedValue;keepKeyboard()});
       input.addEventListener('input',()=>{if(input.value!==lockedValue)input.value=lockedValue});
       input.addEventListener('compositionend',()=>{input.value=lockedValue;keepKeyboard()});
-      input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renderSRS();return}setTimeout(()=>{input.value=lockedValue;keepKeyboard()},0)});
-      requestAnimationFrame(()=>{scrollToSRSCard('answer');keepKeyboard()});
-      setTimeout(()=>{scrollToSRSCard('answer');keepKeyboard()},90);
-      setTimeout(keepKeyboard,240);
+      input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();srsKeepKeyboard=true;renderSRS();return}setTimeout(()=>{input.value=lockedValue;keepKeyboard()},0)});
+      if(shouldKeepSRSKeyboard()){
+        requestAnimationFrame(()=>{scrollToSRSCard('answer');keepKeyboard()});
+        setTimeout(()=>{scrollToSRSCard('answer');keepKeyboard()},90);
+        setTimeout(keepKeyboard,240);
+      }
     }else{
-      requestAnimationFrame(()=>{scrollToSRSCard('question');focusInput()});
-      setTimeout(()=>{scrollToSRSCard('question');focusInput()},110);
-      setTimeout(focusInput,260);
-      input.addEventListener('blur',()=>{if(document.body.classList.contains('srs-focus-lock'))setTimeout(()=>{if(document.activeElement!==input)focusInput()},90)});
+      if(shouldKeepSRSKeyboard()){
+        requestAnimationFrame(()=>{scrollToSRSCard('question');keepKeyboard()});
+        setTimeout(()=>{scrollToSRSCard('question');keepKeyboard()},110);
+        setTimeout(keepKeyboard,260);
+      }
       input.oninput=()=>{const converted=romajiToHiragana(input.value);if(converted!==input.value)input.value=converted}
     }
   }
@@ -3010,6 +3018,7 @@ function renderSRS(feedback){
   if(form){
     form.onsubmit=e=>{
       e.preventDefault();
+      srsKeepKeyboard=true;
       document.body.classList.add('srs-focus-lock');
       if(srsFeedbackMode){renderSRS();return}
       answerSRS(q.jp,input.value)
@@ -3033,20 +3042,32 @@ function setupReaderMobileScrollGuard(){
 }
 function setupMobileSRSKeyboardLock(){
   const srsPage=document.getElementById('srs');
+  const isAnswerControl=e=>!!(e.target.closest&&e.target.closest('#srsInput,#srsForm,.srs-submit'));
   const focusInput=()=>{
-    if(!document.body.classList.contains('srs-focus-lock'))return;
+    if(!shouldKeepSRSKeyboard())return;
     if(!srsPage||!srsPage.classList.contains('active'))return;
     const input=document.getElementById('srsInput');
     if(!input)return;
     try{input.focus({preventScroll:true})}catch(e){input.focus()}
   };
+  document.addEventListener('pointerdown',e=>{
+    if(!srsPage||!srsPage.classList.contains('active'))return;
+    if(isAnswerControl(e)){
+      srsKeepKeyboard=true;
+      document.body.classList.add('srs-focus-lock');
+      setTimeout(focusInput,30);
+    }else{
+      srsKeepKeyboard=false;
+      document.body.classList.remove('srs-focus-lock');
+    }
+  },true);
   document.addEventListener('click',e=>{
     const tab=e.target.closest&&e.target.closest('[data-page="srs"]');
-    if(tab){document.body.classList.add('srs-focus-lock');setTimeout(focusInput,80)}
-    if(e.target.closest&&e.target.closest('#srsInput,#srsForm,.srs-submit,#quizArea')){document.body.classList.add('srs-focus-lock');setTimeout(focusInput,30)}
+    if(tab){srsKeepKeyboard=false;document.body.classList.remove('srs-focus-lock')}
+    if(isAnswerControl(e)){srsKeepKeyboard=true;document.body.classList.add('srs-focus-lock');setTimeout(focusInput,30)}
   });
   document.addEventListener('touchend',e=>{
-    if(e.target.closest&&e.target.closest('#srsInput,#srsForm,.srs-submit,#quizArea')){document.body.classList.add('srs-focus-lock');setTimeout(focusInput,30)}
+    if(isAnswerControl(e)){srsKeepKeyboard=true;document.body.classList.add('srs-focus-lock');setTimeout(focusInput,30)}
   },{passive:true});
   window.addEventListener('resize',()=>setTimeout(focusInput,120),{passive:true});
 }
