@@ -2383,6 +2383,16 @@
       #quizArea .srs-input-wrap{position:relative;z-index:5}
     }
 
+
+    /* v66 SRS soft lock: tetap focus + keyboard stay, tanpa readonly/disabled */
+    #quizArea .srs-input.answer-locked{
+      opacity:.78!important;
+      background:#f1f1ef!important;
+      color:#777!important;
+      border-color:#d5d5d0!important;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.02)!important;
+    }
+
   </style>
 </head>
 <body>
@@ -2971,7 +2981,7 @@ function renderSRS(feedback){
   const questionBlock=feedback
     ?`<div class="quiz-word answer-shown"><ruby>${escapeHtml(current.jp)}<rt>${escapeHtml(current.reading||'')}</rt></ruby></div><div class="srs-answer-meaning">${escapeHtml(current.id||current.meaning||'-')}</div>`
     :`<div class="quiz-word">${escapeHtml(q.jp)}</div>`;
-  area.innerHTML=`${renderSRSProgressButton()}${questionBlock}<div class="srs-level">Level ${current.level||0}/12</div>${renderSRSSourceCard(current)}<form class="srs-input-wrap" id="srsForm"><input class="srs-input ${feedback?'answer-locked':''}" id="srsInput" autocomplete="off" autocapitalize="off" spellcheck="false" lang="ja" inputmode="kana" placeholder="contoh: ばんぐみ" value="${feedback?escapeHtml(feedback.input||''):''}" ${feedback?'data-locked-answer="1" aria-readonly="true"':''}><button class="btn srs-submit" id="srsSubmitBtn" type="submit">${feedback?'Berikutnya':'Jawab'}</button></form>`;
+  area.innerHTML=`${renderSRSProgressButton()}${questionBlock}<div class="srs-level">Level ${current.level||0}/12</div>${renderSRSSourceCard(current)}<form class="srs-input-wrap" id="srsForm"><input class="srs-input ${feedback?'answer-locked':''}" id="srsInput" autocomplete="off" autocapitalize="off" spellcheck="false" lang="ja" inputmode="kana" placeholder="contoh: ばんぐみ" value="${feedback?escapeHtml(feedback.input||''):''}" ${feedback?'data-soft-locked-answer="1"':''}><button class="btn srs-submit" id="srsSubmitBtn" type="submit">${feedback?'Berikutnya':'Jawab'}</button></form>`;
   bindSRSProgressButton();
   const input=$('#srsInput');
   const submitBtn=$('#srsSubmitBtn');
@@ -2980,11 +2990,11 @@ function renderSRS(feedback){
     if(feedback){
       const lockedValue=input.value;
       const keepKeyboard=()=>{try{input.focus({preventScroll:true})}catch(e){input.focus()}};
-      input.addEventListener('beforeinput',e=>{e.preventDefault()});
-      input.addEventListener('paste',e=>{e.preventDefault()});
-      input.addEventListener('drop',e=>{e.preventDefault()});
+      input.addEventListener('paste',e=>{e.preventDefault();input.value=lockedValue;keepKeyboard()});
+      input.addEventListener('drop',e=>{e.preventDefault();input.value=lockedValue;keepKeyboard()});
       input.addEventListener('input',()=>{if(input.value!==lockedValue)input.value=lockedValue});
-      input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renderSRS();return}if(!['Shift','Control','Alt','Meta','Tab'].includes(e.key))e.preventDefault()});
+      input.addEventListener('compositionend',()=>{input.value=lockedValue;keepKeyboard()});
+      input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renderSRS();return}setTimeout(()=>{input.value=lockedValue;keepKeyboard()},0)});
       requestAnimationFrame(()=>{scrollToSRSCard('answer');keepKeyboard()});
       setTimeout(()=>{scrollToSRSCard('answer');keepKeyboard()},90);
       setTimeout(keepKeyboard,240);
