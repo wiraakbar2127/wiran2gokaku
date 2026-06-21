@@ -2085,6 +2085,288 @@
     .srs-browser-x{display:none!important}
     .srs-popup-card>.srs-popup-head .srs-popup-close{display:inline-grid!important;place-items:center}
 
+  
+
+    /* v54: fix reader PC scroll + stop SRS answer auto-jump */
+    html,body{
+      overflow-y:auto!important;
+      height:auto!important;
+    }
+    body.reader-mode{
+      overflow-y:auto!important;
+      height:auto!important;
+      touch-action:auto!important;
+    }
+    body.reader-mode main,
+    body.reader-mode #reader,
+    body.reader-mode .reader-wrap{
+      overflow:visible!important;
+      height:auto!important;
+      max-height:none!important;
+    }
+    body.reader-mode .book{
+      overflow:visible!important;
+      height:auto!important;
+      max-height:none!important;
+    }
+    #srsInput{scroll-margin:0!important}
+
+
+    /* v55: reader scroll benar-benar dibuka lagi (PC + HP) */
+    html,
+    body{
+      overflow-x:hidden!important;
+      overflow-y:auto!important;
+      height:auto!important;
+      min-height:100%!important;
+      max-height:none!important;
+      touch-action:pan-y!important;
+    }
+    body.reader-mode{
+      overflow-y:auto!important;
+      height:auto!important;
+      min-height:100%!important;
+      max-height:none!important;
+      position:static!important;
+      touch-action:pan-y!important;
+    }
+    body.reader-mode main,
+    body.reader-mode .page.active,
+    body.reader-mode #reader,
+    body.reader-mode .reader-wrap,
+    body.reader-mode #book,
+    body.reader-mode .book{
+      overflow:visible!important;
+      height:auto!important;
+      min-height:0!important;
+      max-height:none!important;
+      touch-action:pan-y!important;
+    }
+    body.reader-mode #book.book{
+      min-height:auto!important;
+      display:block!important;
+      contain:none!important;
+    }
+    body.reader-mode .reader-nav-row,
+    body.reader-mode .reader-page-bottom{
+      position:relative!important;
+      z-index:auto!important;
+    }
+
+
+    /* v57: reader kembali pakai scroll normal halaman website */
+    html,body{
+      height:auto!important;
+      max-height:none!important;
+      overflow-x:hidden!important;
+      overflow-y:auto!important;
+      touch-action:auto!important;
+    }
+    body.reader-mode,
+    body.reader-mode main,
+    body.reader-mode #reader.page.active,
+    body.reader-mode #reader .reader-wrap,
+    body.reader-mode #reader #book,
+    body.reader-mode #reader .book{
+      height:auto!important;
+      min-height:0!important;
+      max-height:none!important;
+      overflow:visible!important;
+      touch-action:auto!important;
+      overscroll-behavior-y:auto!important;
+      -webkit-overflow-scrolling:auto!important;
+      contain:none!important;
+    }
+    body.reader-mode #reader.page.active{
+      display:block!important;
+      padding-bottom:calc(var(--reader-float-size,56px)*3 + var(--reader-float-gap,10px)*2 + 42px + env(safe-area-inset-bottom,0px))!important;
+    }
+  
+
+    /* v59: scroll target ke card cerita + kurangi ruang kosong bawah reader */
+    body.reader-mode #reader.page.active{
+      padding-bottom:calc(var(--reader-float-size,56px)*3 + var(--reader-float-gap,10px)*2 + 18px + env(safe-area-inset-bottom,0px))!important;
+    }
+    body.reader-mode main{padding-bottom:18px!important}
+    body.reader-mode .reader-page-bottom{margin-bottom:0!important}
+    body.reader-mode .reader-nav-row{margin-bottom:0!important}
+    @media(max-width:700px){
+      body.reader-mode #reader.page.active{
+        padding-bottom:calc(var(--reader-float-size,48px)*3 + var(--reader-float-gap,8px)*2 + 12px + env(safe-area-inset-bottom,0px))!important;
+      }
+      body.reader-mode main{padding-bottom:10px!important}
+    }
+
+
+    /* v60: rapikan jarak bawah reader + clip efek kertas supaya tidak keluar card */
+    body.reader-mode #reader.page.active{
+      padding-bottom:6px!important;
+    }
+    body.reader-mode main{
+      padding-bottom:8px!important;
+    }
+    body.reader-mode .reader-wrap{
+      margin-bottom:0!important;
+      padding-bottom:0!important;
+    }
+    body.reader-mode .reader-nav-row{
+      margin-top:10px!important;
+      margin-bottom:0!important;
+    }
+    body.reader-mode .reader-page-bottom{
+      margin-top:8px!important;
+      margin-bottom:0!important;
+    }
+    body.reader-mode #book.book,
+    body.reader-mode #reader .book{
+      overflow:hidden!important;
+      isolation:isolate;
+      contain:paint;
+    }
+    body.reader-mode .book:before{
+      inset:auto!important;
+      right:10px!important;
+      top:14px!important;
+      max-width:calc(100% - 20px)!important;
+      overflow:hidden!important;
+      white-space:nowrap!important;
+      clip-path:inset(0 round 24px);
+    }
+    @media(max-width:700px){
+      body.reader-mode #reader.page.active{
+        padding-bottom:4px!important;
+      }
+      body.reader-mode main{
+        padding-bottom:6px!important;
+      }
+      body.reader-mode .book{
+        border-radius:22px!important;
+      }
+      body.reader-mode .reader-nav-row{
+        margin-top:8px!important;
+      }
+      body.reader-mode .reader-page-bottom{
+        margin-top:6px!important;
+      }
+    }
+
+
+  
+
+    /* v63 SRS: answer lock + compact circle stats on right */
+    #srs .srs-stats-area{
+      display:flex!important;
+      justify-content:flex-end!important;
+      align-items:center!important;
+      margin:10px 0 12px!important;
+      padding-right:2px!important;
+    }
+    #srs .srs-stats-area .srs-stats{
+      width:auto!important;
+      display:flex!important;
+      grid-template-columns:none!important;
+      justify-content:flex-end!important;
+      align-items:center!important;
+      gap:8px!important;
+      margin:0!important;
+    }
+    #srs .srs-stats-area .srs-stat{
+      width:64px!important;
+      height:64px!important;
+      min-height:64px!important;
+      border-radius:999px!important;
+      padding:0!important;
+      display:flex!important;
+      flex-direction:column!important;
+      align-items:center!important;
+      justify-content:center!important;
+      text-align:center!important;
+      gap:2px!important;
+      box-shadow:0 10px 26px rgba(37,91,40,.10)!important;
+    }
+    #srs .srs-stats-area .srs-stat strong{
+      font-size:18px!important;
+      line-height:1!important;
+      letter-spacing:-.03em!important;
+    }
+    #srs .srs-stats-area .srs-stat span{
+      width:100%!important;
+      max-width:52px!important;
+      margin:0!important;
+      font-size:8px!important;
+      line-height:1.05!important;
+      font-weight:650!important;
+      text-align:center!important;
+      white-space:normal!important;
+    }
+    #quizArea .quiz-word{
+      font-size:clamp(40px,7.2vw,66px)!important;
+      line-height:1.18!important;
+    }
+    #quizArea .quiz-word.answer-shown{
+      font-size:clamp(36px,6.4vw,58px)!important;
+    }
+    #quizArea .srs-input.answer-locked{
+      color:#777!important;
+      background:#f3f3f1!important;
+      border-color:#d8d8d4!important;
+      cursor:default!important;
+    }
+    @media(max-width:700px){
+      #srs .srs-stats-area{margin:8px 0 10px!important;padding-right:4px!important}
+      #srs .srs-stats-area .srs-stats{gap:6px!important}
+      #srs .srs-stats-area .srs-stat{
+        width:52px!important;
+        height:52px!important;
+        min-height:52px!important;
+      }
+      #srs .srs-stats-area .srs-stat strong{font-size:15px!important}
+      #srs .srs-stats-area .srs-stat span{font-size:7px!important;max-width:42px!important}
+      #quizArea .quiz-word{font-size:clamp(34px,10vw,48px)!important;line-height:1.16!important}
+      #quizArea .quiz-word.answer-shown{font-size:clamp(31px,9vw,42px)!important}
+      #quizArea.srs-card{padding-top:16px!important}
+      #quizArea .srs-input-wrap{margin-top:10px!important}
+    }
+
+
+    /* v64 SRS: circle stats centered + smart focus scroll */
+    #srs .srs-stats-area{
+      justify-content:center!important;
+      padding-right:0!important;
+      margin:12px 0 14px!important;
+    }
+    #srs .srs-stats-area .srs-stats{
+      justify-content:center!important;
+      gap:10px!important;
+    }
+    #srs .srs-stats-area .srs-stat{
+      width:72px!important;
+      height:72px!important;
+      min-height:72px!important;
+    }
+    #srs .srs-stats-area .srs-stat strong{font-size:20px!important}
+    #srs .srs-stats-area .srs-stat span{font-size:8.8px!important;max-width:58px!important}
+    #quizArea{scroll-margin-top:16px;scroll-margin-bottom:18px}
+    #quizArea .quiz-word{font-size:clamp(38px,6.8vw,62px)!important}
+    #quizArea .quiz-word.answer-shown{font-size:clamp(34px,6vw,54px)!important}
+    @media(max-width:700px){
+      #srs .srs-stats-area{margin:10px 0 12px!important;padding:0!important}
+      #srs .srs-stats-area .srs-stats{gap:8px!important;flex-wrap:wrap!important}
+      #srs .srs-stats-area .srs-stat{
+        width:58px!important;
+        height:58px!important;
+        min-height:58px!important;
+      }
+      #srs .srs-stats-area .srs-stat strong{font-size:16px!important}
+      #srs .srs-stats-area .srs-stat span{font-size:7.4px!important;max-width:48px!important}
+      #quizArea{scroll-margin-top:10px;scroll-margin-bottom:10px}
+      #quizArea .quiz-word{font-size:clamp(31px,9vw,44px)!important;line-height:1.15!important}
+      #quizArea .quiz-word.answer-shown{font-size:clamp(29px,8.4vw,39px)!important}
+      #quizArea .srs-answer-meaning{font-size:15px!important;line-height:1.45!important}
+      #quizArea .srs-level{font-size:12px!important;padding:7px 10px!important}
+      #quizArea .srs-source-card{font-size:11px!important}
+    }
+
   </style>
 </head>
 <body>
@@ -2242,7 +2524,7 @@
   <div class="leave-modal" id="leaveReaderModal" aria-hidden="true">
     <div class="leave-card">
       <h3>Yakin ingin kembali?</h3>
-      <p>Progress bacaan tetap aman, tapi kamu akan keluar dari halaman cerita sekarang.</p>
+      <p>Progress bacaan belum di simpan, yakin tidak mau disimpan?</p>
       <div class="actions leave-actions">
         <button type="button" class="btn secondary" id="leaveCancelBtn">Batal</button>
         <button type="button" class="btn" id="leaveConfirmBtn">Ya, kembali</button>
@@ -2298,7 +2580,7 @@ let pendingLeaveAction=null;
 function openLeaveReaderModal(action){pendingLeaveAction=action;const m=$('#leaveReaderModal');if(m){m.classList.add('show');m.setAttribute('aria-hidden','false')}}
 function closeLeaveReaderModal(){const m=$('#leaveReaderModal');if(m){m.classList.remove('show');m.setAttribute('aria-hidden','true')}pendingLeaveAction=null}
 function confirmLeaveReader(){const fn=pendingLeaveAction;closeLeaveReaderModal();if(typeof fn==='function')fn()}
-function tab(id,force=false){const active=$('.page.active')?.id;if(!force&&active==='reader'&&id!=='reader'){openLeaveReaderModal(()=>tab(id,true));return false}$$('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===id));$$('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.body.classList.toggle('reader-mode',id==='reader');if(id==='library')renderLibrary();if(id==='reader')renderReader();if(id==='srs')renderSRS();return true}$$('.tab').forEach(b=>b.onclick=()=>tab(b.dataset.page));
+function tab(id,force=false){const active=$('.page.active')?.id;if(!force&&active==='reader'&&id!=='reader'){openLeaveReaderModal(()=>tab(id,true));return false}$$('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===id));$$('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.body.classList.toggle('reader-mode',id==='reader');if(typeof applyReaderScrollLayout==='function')setTimeout(applyReaderScrollLayout,0);if(id==='library')renderLibrary();if(id==='reader')renderReader();if(id==='srs')renderSRS();return true}$$('.tab').forEach(b=>b.onclick=()=>tab(b.dataset.page));
 function normalize(story){story.id=story.id||('story_'+Date.now());story.title=story.title||'Untitled Story';story.level=story.level||'N2';story.author=story.author||story.writer||story.creator||story.penulis||story.by||'';story.sentences=(story.sentences||[]).map((s,i)=>({no:s.no??(i+1),jp:s.jp||s.japanese||'',naturalId:s.naturalId||s.id||s.translation||'',furigana:s.furigana||[],tokens:(s.tokens||[]).map(t=>({...t,type:t.type||(PARTICLES.has(t.jp)?'particle':'word')})),image:s.image||null,images:s.images||[],media:s.media||s.medias||[],kind:s.kind||'sentence'})).filter(s=>s.jp);story.images=Array.isArray(story.images)?story.images:[];story.media=Array.isArray(story.media)?story.media:[];story.progress=story.progress||{page:0};return story}
 function importStory(obj,opts={}){let story=normalize(obj);story.importedAt=story.importedAt||Date.now();story.createdAt=story.createdAt||story.importedAt;const idx=state.stories.findIndex(s=>s.id===story.id);if(idx>=0){const old=state.stories[idx];story.progress=old.progress||story.progress;state.stories[idx]=story}else state.stories.unshift(story);state.activeId=story.id;state.page=story.progress?.page||0;save();if(!opts.silent){renderLibrary();toast('Cerita masuk Library')}if(!opts.stay)tab('library');return story}
 function hasKanji(s=''){return /[一-龯々〆ヵヶ]/.test(String(s))}
@@ -2335,7 +2617,7 @@ function sentenceImages(s){let media=[];if(s.image)media.push(s.image);if(Array.
 function imagesAfterSentence(story,s){const no=Number(s.no);const all=[...(story.images||[]),...(story.media||[])];return all.filter(img=>{const after=Number(img.afterNo??img.sentenceNo??img.sentenceIndex??img.afterSentence??img.after);if(Number.isFinite(after)&&after===no)return true;if(typeof img.position==='string'){const m=img.position.match(/after-s0*(\d+)/i);if(m&&Number(m[1])===no)return true}return false}).map(renderStoryMedia).join('')}
 function renderSentence(s,story){return `<div class="sentence" id="sentence-${escapeHtml(s.no)}"><div class="jp">${rubySentence(s.jp,s.furigana)}</div><div class="id">${escapeHtml(s.naturalId)}</div></div>${sentenceImages(s)}${imagesAfterSentence(story,s)}`}
 function getStoryTheme(story){return story.theme||story.genre||story.topic||story.category||story.storyTheme||story.tone||'Misteri TV'}
-function renderReader(){const story=getActive(),book=$('#book');if(!story){$('#readerTitle').textContent='Reader';$('#readerMeta').innerHTML='<span>-</span><span>-</span>';const rd=$('#readerDesc');if(rd)rd.textContent='';$('#pageInfo').textContent='0/0';const bottom=$('#pageInfoBottom');if(bottom)bottom.textContent='0/0';const navPage=$('#pageInfoNav');if(navPage)navPage.textContent='0/0';book.innerHTML='<div class="empty">Belum ada cerita aktif. Pilih cerita dari Library dulu.</div>';return}const ps=pages(story);state.page=Math.max(0,Math.min(state.page,ps.length-1));const list=ps[state.page]||[];$('#readerTitle').textContent=story.title;const author=story.author||story.writer||story.creator||'雨穴';const theme=getStoryTheme(story);$('#readerMeta').innerHTML=`<span>${escapeHtml(author)}</span><span>${escapeHtml(theme)}</span>`;const pageText=`${state.page+1}/${ps.length}`;$('#pageInfo').textContent=pageText;const rd=$('#readerDesc');if(rd)rd.textContent='';const bottom=$('#pageInfoBottom');if(bottom)bottom.textContent=pageText;const navPage=$('#pageInfoNav');if(navPage)navPage.textContent=pageText;book.classList.add('show-ruby');book.innerHTML=list.map(s=>renderSentence(s,story)).join('');const prevBtn=$('#prevPage');if(prevBtn){prevBtn.textContent=state.page<=0?'← Kembali':'← Sebelumnya'}const nextBtn=$('#nextPage');if(nextBtn){const last=state.page>=ps.length-1;nextBtn.textContent=last?'TAMAT':'Selanjutnya →';nextBtn.classList.toggle('finish',last)}}
+function renderReader(){const story=getActive(),book=$('#book');if(!story){$('#readerTitle').textContent='Reader';$('#readerMeta').innerHTML='<span>-</span><span>-</span>';const rd=$('#readerDesc');if(rd)rd.textContent='';$('#pageInfo').textContent='0/0';const bottom=$('#pageInfoBottom');if(bottom)bottom.textContent='0/0';const navPage=$('#pageInfoNav');if(navPage)navPage.textContent='0/0';book.innerHTML='<div class="empty">Belum ada cerita aktif. Pilih cerita dari Library dulu.</div>';return}const ps=pages(story);state.page=Math.max(0,Math.min(state.page,ps.length-1));const list=ps[state.page]||[];$('#readerTitle').textContent=story.title;const author=story.author||story.writer||story.creator||'雨穴';const theme=getStoryTheme(story);$('#readerMeta').innerHTML=`<span>${escapeHtml(author)}</span><span>${escapeHtml(theme)}</span>`;const pageText=`${state.page+1}/${ps.length}`;$('#pageInfo').textContent=pageText;const rd=$('#readerDesc');if(rd)rd.textContent='';const bottom=$('#pageInfoBottom');if(bottom)bottom.textContent=pageText;const navPage=$('#pageInfoNav');if(navPage)navPage.textContent=pageText;book.classList.add('show-ruby');book.innerHTML=list.map(s=>renderSentence(s,story)).join('');if(typeof applyReaderScrollLayout==='function')setTimeout(applyReaderScrollLayout,0);const prevBtn=$('#prevPage');if(prevBtn){prevBtn.textContent=state.page<=0?'← Kembali':'← Sebelumnya'}const nextBtn=$('#nextPage');if(nextBtn){const last=state.page>=ps.length-1;nextBtn.textContent=last?'TAMAT':'Selanjutnya →';nextBtn.classList.toggle('finish',last)}}
 function displayAuthor(story){return story.author||story.writer||story.creator||story.penulis||story.by||'Tidak diketahui'}
 function formatDateTime(ts){if(!ts)return '';try{return new Intl.DateTimeFormat('id-ID',{weekday:'long',day:'2-digit',month:'long',year:'numeric'}).format(new Date(ts))}catch(e){return new Date(ts).toLocaleDateString('id-ID')}}
 
@@ -2388,12 +2670,28 @@ document.addEventListener('pointerup',e=>{
 
 document.addEventListener('keydown',e=>{const blurFurigana=e.target.closest?.('.book .jp .furigana-blur');if(blurFurigana&&(e.key==='Enter'||e.key===' ')){e.preventDefault();blurFurigana.classList.toggle('revealed')}});
 $('#closeEditStory')?.addEventListener('click',closeEditStory);$('#cancelEditStory')?.addEventListener('click',closeEditStory);$('#saveEditStory')?.addEventListener('click',saveEditStory);$('#editStoryModal')?.addEventListener('click',e=>{if(e.target.id==='editStoryModal')closeEditStory()});$('#editStoryCover')?.addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{setEditCoverPreview(await fileToDataUrl(file))}catch(err){toast('Cover gagal dibaca')}});
-$('#readerUpTop')?.addEventListener('click',()=>{const r=$('#reader');if(r)r.scrollIntoView({behavior:'smooth',block:'start'});else window.scrollTo({top:0,behavior:'smooth'})});
+$('#readerUpTop')?.addEventListener('click',()=>{scrollReaderTop('smooth')});
 $('#cancelDeleteStory')?.addEventListener('click',closeDeleteStoryModal);$('#cancelDeleteX')?.addEventListener('click',closeDeleteStoryModal);$('#deleteStoryModal')?.addEventListener('click',e=>{if(e.target.id==='deleteStoryModal')closeDeleteStoryModal()});$('#confirmDeleteStory')?.addEventListener('click',()=>{const id=pendingDeleteStoryId;if(!id)return closeDeleteStoryModal();closeDeleteStoryModal();deleteStoryNow(id)});
 
-function scrollReaderTop(){const target=$('.reader-top')||$('#book');if(!target)return;setTimeout(()=>{target.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>window.wiraShowHeader&&window.wiraShowHeader(),160)},30)}
+function scrollReaderTop(behavior='smooth'){
+  // v59: setelah next/prev, scroll berhenti di atas card cerita (#book), bukan paling atas web.
+  const run=()=>{
+    try{applyReaderScrollLayout&&applyReaderScrollLayout()}catch(e){}
+    const book=document.getElementById('book');
+    const readerWrap=document.querySelector('#reader .reader-wrap');
+    const targetEl=book||readerWrap||document.getElementById('reader');
+    const rawTop=targetEl ? (targetEl.getBoundingClientRect().top + (window.pageYOffset||document.documentElement.scrollTop||0) - 6) : 0;
+    const yTarget=Math.max(0,Math.round(rawTop));
+    window.scrollTo({top:yTarget,left:0,behavior});
+    setTimeout(()=>{
+      window.scrollTo({top:yTarget,left:0,behavior:'auto'});
+      window.wiraShowHeader&&window.wiraShowHeader();
+    },180);
+  };
+  requestAnimationFrame(()=>setTimeout(run,20));
+}
 function finishCurrentStory(){const story=getActive();if(story){const max=pages(story).length-1;state.page=max;story.progress={page:max,savedAt:Date.now(),finishedAt:Date.now()};story.lastOpenPage=max;addSRSFromSavedPages(story);save();renderLibrary();renderSRS()}}function showFinishModal(){finishCurrentStory();const m=$('#finishModal');if(m)m.classList.add('show');setTimeout(()=>{if(m)m.classList.remove('show');tab('library',true);window.scrollTo({top:0,behavior:'smooth'})},1500)}
-function go(delta){const story=getActive();if(!story)return;const max=pages(story).length-1;if(delta>0&&state.page>=max){showFinishModal();return}const next=Math.max(0,Math.min(max,state.page+delta));if(next===state.page)return;state.page=next;const b=$('#book');b.classList.remove('turn-next','turn-prev');void b.offsetWidth;b.classList.add(delta>0?'turn-next':'turn-prev');renderReader();scrollReaderTop()}$('#prevPage').onclick=()=>go(-1);$('#nextPage').onclick=()=>go(1);const closeFinish=$('#closeFinishModal');if(closeFinish)closeFinish.onclick=()=>$('#finishModal')?.classList.remove('show');$('#finishModal').onclick=e=>{if(e.target.id==='finishModal')e.currentTarget.classList.remove('show')};document.addEventListener('keydown',e=>{if($('.page.active')?.id!=='reader')return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+function go(delta){const story=getActive();if(!story)return;const max=pages(story).length-1;if(delta>0&&state.page>=max){showFinishModal();return}const next=Math.max(0,Math.min(max,state.page+delta));if(next===state.page){scrollReaderTop('smooth');return}state.page=next;const b=$('#book');b.classList.remove('turn-next','turn-prev');void b.offsetWidth;b.classList.add(delta>0?'turn-next':'turn-prev');renderReader();scrollReaderTop('smooth')}$('#prevPage').onclick=()=>go(-1);$('#nextPage').onclick=()=>go(1);$('#tapLeft')?.addEventListener('click',()=>go(-1));$('#tapRight')?.addEventListener('click',()=>go(1));const closeFinish=$('#closeFinishModal');if(closeFinish)closeFinish.onclick=()=>$('#finishModal')?.classList.remove('show');$('#finishModal').onclick=e=>{if(e.target.id==='finishModal')e.currentTarget.classList.remove('show')};document.addEventListener('keydown',e=>{if($('.page.active')?.id!=='reader')return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
 function openSavedProgressModal(pageNum){const m=$('#savedProgressModal');const t=$('#savedProgressText');if(t)t.textContent=`Anda membaca sampai halaman ${pageNum}.`;if(m){m.classList.add('show');m.setAttribute('aria-hidden','false')}}
 function closeSavedProgressModal(){const m=$('#savedProgressModal');if(m){m.classList.remove('show');m.setAttribute('aria-hidden','true')}}
 function saveReaderProgress(){const s=getActive();if(s){s.progress={page:state.page,savedAt:Date.now()};s.lastOpenPage=state.page;s.lastReadAt=Date.now();addSRSFromSavedPages(s);save();renderLibrary();renderSRS();const btn=$('#floatingSaveProgress');if(btn){btn.classList.add('saved');setTimeout(()=>btn.classList.remove('saved'),3000)}openSavedProgressModal(state.page+1)}}
@@ -2623,27 +2921,83 @@ function pickSRSQuestion(){repairSRSReadings();const valid=state.srs.filter(v=>v
 let srsFeedbackMode=false;
 function srsSourceTitle(v){const story=state.stories.find(s=>s.id===(v?.sourceId||''));return story?.title||v?.source||'Tidak diketahui'}
 function renderSRSSourceCard(v){return `<div class="srs-source-card">${escapeHtml(srsSourceTitle(v))}</div>`}
-function renderSRS(feedback){repairSRSReadings();const area=$('#quizArea');const st=srsStats();$('#srsCount').textContent=`${st.total} kosakata`;srsFeedbackMode=!!feedback;if(!state.srs.length){area.className='card srs-card'+(srsListFilter?' has-browser':'');area.innerHTML=renderSRSProgressButton()+'<div class="empty">Belum ada kosakata. Simpan halaman di Reader dulu agar kosakata masuk SRS.</div>';bindSRSProgressButton();return}const q=feedback?.item||pickSRSQuestion();if(!q||!q.reading||hasKanji(q.reading)){area.className='card srs-card'+(srsListFilter?' has-browser':'');area.innerHTML=renderSRSProgressButton()+'<div class="empty">Kosakata SRS belum punya data furigana yang valid. Import JSON furigana terbaru lalu simpan halaman Reader lagi.</div>';bindSRSProgressButton();return}area.className='card srs-card'+(srsListFilter?' has-browser':'')+(feedback?.ok?' correct':feedback?.ok===false?' wrong':'');const current=feedback?.item||q;const questionBlock=feedback?`<div class="quiz-word answer-shown"><ruby>${escapeHtml(current.jp)}<rt>${escapeHtml(current.reading||'')}</rt></ruby></div><div class="srs-answer-meaning">${escapeHtml(current.id||current.meaning||'-')}</div>`:`<div class="quiz-word">${escapeHtml(q.jp)}</div>`;area.innerHTML=`${renderSRSProgressButton()}${questionBlock}<div class="srs-level">Level ${current.level||0}/12</div>${renderSRSSourceCard(current)}<form class="srs-input-wrap" id="srsForm"><input class="srs-input" id="srsInput" autocomplete="off" autocapitalize="off" spellcheck="false" lang="ja" inputmode="kana" placeholder="contoh: ばんぐみ" value="${feedback?escapeHtml(feedback.input||''):''}"><button class="btn srs-submit" type="submit">${feedback?'Berikutnya':'Jawab'}</button></form>`;bindSRSProgressButton();const input=$('#srsInput');if(input){const keepFocus=()=>{try{input.focus({preventScroll:true})}catch(e){input.focus()} if(window.innerWidth<=760)area.scrollIntoView({behavior:'smooth',block:'center'})};keepFocus();setTimeout(keepFocus,60);setTimeout(keepFocus,220);input.addEventListener('focus',()=>{if(window.innerWidth<=760)area.scrollIntoView({behavior:'smooth',block:'center'})});input.addEventListener('blur',()=>{if(document.body.classList.contains('srs-focus-lock'))setTimeout(()=>{if(document.activeElement!==input)keepFocus()},90)});input.oninput=()=>{const converted=romajiToHiragana(input.value);if(converted!==input.value)input.value=converted}}const form=$('#srsForm');if(form){form.onsubmit=e=>{e.preventDefault();document.body.classList.add('srs-focus-lock');if(srsFeedbackMode){renderSRS();return}answerSRS(q.jp,input.value)}}}
-function answerSRS(jp,input){const v=state.srs.find(x=>x.jp===jp);if(!v)return;const ok=isCorrectReading(input,v);if(ok){v.level=Math.min(12,(v.level||0)+1);v.next=Date.now()+srsInterval(v.level)}else{v.level=Math.max(0,(v.level||0)-1);v.next=Date.now()+600000}save();renderSRS({ok,item:v,input})}
+function scrollToSRSCard(mode){
+  const area=document.getElementById('quizArea');
+  const page=document.getElementById('srs');
+  if(!area||!page||!page.classList.contains('active'))return;
+  const rect=area.getBoundingClientRect();
+  const docTop=window.pageYOffset||document.documentElement.scrollTop||0;
+  const vh=window.visualViewport?.height||window.innerHeight||640;
+  const target=Math.max(0, docTop+rect.top-(mode==='answer'?Math.max(8,(vh-rect.height)*0.32):Math.max(10,(vh-rect.height)*0.24)));
+  window.scrollTo({top:target,behavior:'smooth'});
+}
+function renderSRS(feedback){
+  repairSRSReadings();
+  const area=$('#quizArea');
+  const st=srsStats();
+  $('#srsCount').textContent=`${st.total} kosakata`;
+  srsFeedbackMode=!!feedback;
+  if(!state.srs.length){
+    area.className='card srs-card'+(srsListFilter?' has-browser':'');
+    area.innerHTML=renderSRSProgressButton()+'<div class="empty">Belum ada kosakata. Simpan halaman di Reader dulu agar kosakata masuk SRS.</div>';
+    bindSRSProgressButton();
+    return
+  }
+  const q=feedback?.item||pickSRSQuestion();
+  if(!q||!q.reading||hasKanji(q.reading)){
+    area.className='card srs-card'+(srsListFilter?' has-browser':'');
+    area.innerHTML=renderSRSProgressButton()+'<div class="empty">Kosakata SRS belum punya data furigana yang valid. Import JSON furigana terbaru lalu simpan halaman Reader lagi.</div>';
+    bindSRSProgressButton();
+    return
+  }
+  area.className='card srs-card'+(srsListFilter?' has-browser':'')+(feedback?.ok?' correct':feedback?.ok===false?' wrong':'');
+  const current=feedback?.item||q;
+  const questionBlock=feedback
+    ?`<div class="quiz-word answer-shown"><ruby>${escapeHtml(current.jp)}<rt>${escapeHtml(current.reading||'')}</rt></ruby></div><div class="srs-answer-meaning">${escapeHtml(current.id||current.meaning||'-')}</div>`
+    :`<div class="quiz-word">${escapeHtml(q.jp)}</div>`;
+  area.innerHTML=`${renderSRSProgressButton()}${questionBlock}<div class="srs-level">Level ${current.level||0}/12</div>${renderSRSSourceCard(current)}<form class="srs-input-wrap" id="srsForm"><input class="srs-input ${feedback?'answer-locked':''}" id="srsInput" autocomplete="off" autocapitalize="off" spellcheck="false" lang="ja" inputmode="kana" placeholder="contoh: ばんぐみ" value="${feedback?escapeHtml(feedback.input||''):''}" ${feedback?'readonly aria-readonly="true"':''}><button class="btn srs-submit" id="srsSubmitBtn" type="submit">${feedback?'Berikutnya':'Jawab'}</button></form>`;
+  bindSRSProgressButton();
+  const input=$('#srsInput');
+  const submitBtn=$('#srsSubmitBtn');
+  const focusInput=()=>{try{input&&input.focus({preventScroll:true})}catch(e){input&&input.focus()}};
+  if(input){
+    if(feedback){
+      input.addEventListener('keydown',e=>{if(e.key!=='Enter')e.preventDefault()});
+      try{submitBtn&&submitBtn.focus({preventScroll:true})}catch(e){submitBtn&&submitBtn.focus()}
+      requestAnimationFrame(()=>scrollToSRSCard('answer'));
+      setTimeout(()=>scrollToSRSCard('answer'),90);
+    }else{
+      requestAnimationFrame(()=>{scrollToSRSCard('question');focusInput()});
+      setTimeout(()=>{scrollToSRSCard('question');focusInput()},110);
+      setTimeout(focusInput,260);
+      input.addEventListener('blur',()=>{if(document.body.classList.contains('srs-focus-lock'))setTimeout(()=>{if(document.activeElement!==input)focusInput()},90)});
+      input.oninput=()=>{const converted=romajiToHiragana(input.value);if(converted!==input.value)input.value=converted}
+    }
+  }
+  const form=$('#srsForm');
+  if(form){
+    form.onsubmit=e=>{
+      e.preventDefault();
+      document.body.classList.add('srs-focus-lock');
+      if(srsFeedbackMode){renderSRS();return}
+      answerSRS(q.jp,input.value)
+    }
+  }
+}
+function answerSRS(jp,input){
+  const v=state.srs.find(x=>x.jp===jp);
+  if(!v)return;
+  const ok=isCorrectReading(input,v);
+  if(ok){v.level=Math.min(12,(v.level||0)+1);v.next=Date.now()+srsInterval(v.level)}
+  else{v.level=Math.max(0,(v.level||0)-1);v.next=Date.now()+600000}
+  save();
+  renderSRS({ok,item:v,input});
+}
 window.answerSRS=answerSRS;
 
 function setupReaderMobileScrollGuard(){
-  let startY=0;
-  window.addEventListener('touchstart',e=>{
-    if(e.touches&&e.touches.length)startY=e.touches[0].clientY;
-  },{passive:true});
-  window.addEventListener('touchmove',e=>{
-    if(!document.body.classList.contains('reader-mode'))return;
-    if(!e.touches||!e.touches.length)return;
-    const target=e.target;
-    if(target&&target.closest&&target.closest('.srs-popup-card,.edit-card,.delete-card,textarea,input,.srs-browser-list'))return;
-    const y=e.touches[0].clientY;
-    const delta=y-startY;
-    const doc=document.scrollingElement||document.documentElement;
-    const max=Math.max(0,doc.scrollHeight-window.innerHeight);
-    const top=doc.scrollTop||window.pageYOffset||0;
-    if((top<=0&&delta>0)||(top>=max-1&&delta<0))e.preventDefault();
-  },{passive:false});
+  // v57: tidak ada scroll guard. Reader memakai scroll normal halaman website.
+  applyReaderScrollLayout();
 }
 function setupMobileSRSKeyboardLock(){
   const srsPage=document.getElementById('srs');
@@ -2665,6 +3019,26 @@ function setupMobileSRSKeyboardLock(){
   window.addEventListener('resize',()=>setTimeout(focusInput,120),{passive:true});
 }
 setupReaderMobileScrollGuard();
+function applyReaderScrollLayout(){
+  document.documentElement.style.overflowY='auto';
+  document.documentElement.style.height='auto';
+  document.body.style.overflowY='auto';
+  document.body.style.height='auto';
+  document.body.style.maxHeight='none';
+  document.body.style.position='static';
+  const main=document.querySelector('main');
+  const reader=document.getElementById('reader');
+  const book=document.getElementById('book');
+  const wrap=document.querySelector('.reader-wrap');
+  if(main){main.style.height='auto';main.style.overflow='visible';main.style.maxHeight='none'}
+  if(reader){reader.style.height='auto';reader.style.overflowY='visible';reader.style.overflowX='hidden';reader.style.maxHeight='none';reader.style.touchAction='auto'}
+  [wrap,book].filter(Boolean).forEach(el=>{el.style.height='auto';el.style.maxHeight='none';el.style.touchAction='auto'});
+  if(wrap)wrap.style.overflow='visible';
+  if(book)book.style.overflow='hidden';
+}
+function unlockReaderScroll(){applyReaderScrollLayout()}
+window.addEventListener('load',unlockReaderScroll,{passive:true});
+window.addEventListener('resize',unlockReaderScroll,{passive:true});
 setupMobileSRSKeyboardLock();
 $('#srsPopupModal')?.addEventListener('click',e=>{if(e.target.id==='srsPopupModal')closeSRSPopup()});$('#closeSrsPopup')?.addEventListener('click',closeSRSPopup);
 document.body.classList.toggle('reader-mode',$('.page.active')?.id==='reader');renderLibrary();document.addEventListener('click',e=>{const b=e.target.closest('[data-open-story]');if(b){e.preventDefault();window.openStory(b.dataset.openStory,b.dataset.reread==='1')}});renderReader();renderSRS();setTimeout(()=>$('#appLoader')?.classList.add('hide'),900);
