@@ -3194,5 +3194,137 @@ setupMobileSRSKeyboardLock();
 $('#srsPopupModal')?.addEventListener('click',e=>{if(e.target.id==='srsPopupModal')closeSRSPopup()});$('#closeSrsPopup')?.addEventListener('click',closeSRSPopup);
 document.body.classList.toggle('reader-mode',$('.page.active')?.id==='reader');renderLibrary();document.addEventListener('click',e=>{const b=e.target.closest('[data-open-story]');if(b){e.preventDefault();window.openStory(b.dataset.openStory,b.dataset.reread==='1')}});renderReader();renderSRS();setTimeout(()=>$('#appLoader')?.classList.add('hide'),900);
 </script>
+  <script id="wira-master-ime-override">
+(function(){
+  'use strict';
+
+  // 1. TIMPA FUNGSI LAMA SECARA GLOBAL (Menghapus efek riwayat lama)
+  window.romajiToHiragana = function(text) {
+    const kanaMap = {
+      'a':'あ','i':'い','u':'う','e':'え','o':'お',
+      'ka':'か','ki':'き','ku':'く','ke':'け','ko':'こ',
+      'ga':'が','gi':'ぎ','gu':'ぐ','ge':'げ','go':'ご',
+      'sa':'さ','shi':'し','su':'す','se':'せ','so':'そ',
+      'za':'ざ','ji':'じ','zu':'ず','ze':'ぜ','zo':'ぞ',
+      'ta':'た','chi':'ち','tsu':'つ','te':'て','to':'と',
+      'da':'だ','di':'ぢ','du':'づ','de':'で','do':'ど',
+      'na':'な','ni':'に','nu':'ぬ','ne':'ね','no':'の',
+      'ha':'は','hi':'ひ','fu':'ふ','he':'へ','ho':'ほ',
+      'ba':'ば','bi':'び','bu':'ぶ','be':'べ','bo':'ぼ',
+      'pa':'ぱ','pi':'ぴ','pu':'ぷ','pe':'ぺ','po':'ぽ',
+      'ma':'ま','mi':'み','mu':'む','me':'め','mo':'も',
+      'ya':'や','yu':'ゆ','yo':'よ',
+      'ra':'ら','ri':'り','ru':'る','re':'れ','ro':'ろ',
+      'wa':'わ','wo':'を',
+      'kya':'きゃ','kyu':'きゅ','kyo':'きょ',
+      'gya':'ぎゃ','gyu':'ぎゅ','gyo':'ぎょ',
+      'sha':'しゃ','shu':'しゅ','sho':'しょ',
+      'ja':'じゃ','ju':'じゅ','jo':'じょ',
+      'cha':'ちゃ','chu':'ちゅ','cho':'ちょ',
+      'nya':'にゃ','nyu':'にゅ','nyo':'にょ',
+      'hya':'ひゃ','hyu':'ひゅ','hyo':'ひょ',
+      'bya':'びゃ','byu':'びゅ','byo':'びょ',
+      'pya':'ぴゃ','pyu':'ぴゅ','pyo':'ぴょ',
+      'mya':'みゃ','myu':'みゅ','myo':'みょ',
+      'rya':'りゃ','ryu':'りゅ','ryo':'りょ',
+      'nn':'ん', '-':'ー'
+    };
+
+    let result = '';
+    let i = 0;
+    text = String(text || '').toLowerCase();
+
+    while (i < text.length) {
+      let char = text[i];
+
+      // Abaikan jika sudah berbentuk kana, tanda hubung, atau spasi
+      if (/[ぁ-んァ-ヶー\s]/.test(char)) {
+        result += char;
+        i++;
+        continue;
+      }
+
+      // Sokuon (Konsonan ganda: kka, tta, ppa) - Kecuali untuk 'n'
+      if (i + 1 < text.length && text[i] === text[i+1] && /[bcdfghjklmpqrstvwxyz]/.test(char) && char !== 'n') {
+        result += 'っ';
+        i++;
+        continue;
+      }
+
+      // Cari kecocokan terpanjang (3 huruf, 2 huruf, 1 huruf)
+      let matched = false;
+      for (let len = 3; len > 0; len--) {
+        let chunk = text.substr(i, len);
+        if (kanaMap[chunk]) {
+          result += kanaMap[chunk];
+          i += len;
+          matched = true;
+          break;
+        }
+      }
+
+      if (!matched) {
+        // Penanganan cerdas untuk huruf 'n' (ん) agar tidak bentrok
+        if (char === 'n') {
+          let nextChar = text[i+1];
+          // Jika 'n' diikuti apostrof (contoh: n'a -> んあ)
+          if (nextChar === "'") {
+            result += 'ん';
+            i += 2;
+            continue;
+          }
+          // Jika 'n' diikuti konsonan selain vokal/y/n (contoh: nt -> んt)
+          if (nextChar && !/[aiueoyn]/.test(nextChar) && /[a-z]/.test(nextChar)) {
+            result += 'ん';
+            i++;
+            continue;
+          }
+        }
+        // Jika input belum lengkap, biarkan sebagai huruf romaji sementara
+        result += char;
+        i++;
+      }
+    }
+    return result;
+  };
+
+  // 2. PATCH FUNGSI SUBMIT (Menyelesaikan 'n' gantung)
+  const oldSubmit = window.submitSrsAnswer;
+  window.submitSrsAnswer = function() {
+    const input = document.getElementById('srsAnswerInput');
+    if (input && !window.srsLocked && input.dataset.locked !== '1') {
+      let typed = String(input.value || '').trim();
+      // Ubah 'n' di akhir yang belum jadi 'ん' saat dienter
+      if (/n$/i.test(typed)) {
+        typed = typed.replace(/n$/i, 'ん');
+      }
+      input.value = window.romajiToHiragana(typed);
+    }
+    if (typeof oldSubmit === 'function') {
+      return oldSubmit.apply(this, arguments);
+    }
+  };
+
+  // 3. PASANG IME LISTENER YANG BERSIH KE INPUT
+  const oldRender = window.renderCurrentSrsCard;
+  window.renderCurrentSrsCard = function() {
+    if (typeof oldRender === 'function') oldRender.apply(this, arguments);
+    
+    const input = document.getElementById('srsAnswerInput');
+    if (input && !input.dataset.imeBound) {
+      input.dataset.imeBound = '1';
+      input.addEventListener('input', function() {
+        if (input.dataset.locked === '1') return;
+        input.value = window.romajiToHiragana(input.value);
+        // Selalu pastikan kursor ada di paling akhir teks
+        try {
+          input.setSelectionRange(input.value.length, input.value.length);
+        } catch(e) {}
+      });
+    }
+  };
+
+})();
+</script>
 </body>
 </html>
